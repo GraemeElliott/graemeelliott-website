@@ -26,7 +26,7 @@ export default function Blog() {
                         _id,
                         url
                     }
-                }
+                },
             }`
       )
       .then((data) => setAllPosts(data))

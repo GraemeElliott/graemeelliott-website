@@ -54,6 +54,11 @@ export default {
       type: 'datetime',
     },
     {
+      name: 'updatedAt',
+      title: 'Updated at',
+      type: 'datetime',
+    },
+    {
       name: 'body',
       title: 'Body',
       type: 'blockContent',

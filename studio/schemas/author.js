@@ -9,6 +9,11 @@ export default {
       type: 'string',
     },
     {
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -33,10 +38,28 @@ export default {
         {
           title: 'Block',
           type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
+          styles: [{ title: 'Normal', value: 'normal' }],
           lists: [],
+          options: {
+            maxLength: 25,
+          },
         },
       ],
+    },
+    {
+      name: 'githubUrl',
+      title: 'Github URL',
+      type: 'string',
+    },
+    {
+      name: 'linkedInUrl',
+      title: 'LinkedIn URL',
+      type: 'string',
+    },
+    {
+      name: 'instagramUrl',
+      title: 'Instagram URL',
+      type: 'string',
     },
   ],
   preview: {
@@ -45,4 +68,4 @@ export default {
       media: 'image',
     },
   },
-}
+};
