@@ -103,19 +103,19 @@ export default function BlogPostView() {
           src={urlFor(post.currentPost.authorImage).url()}
           alt="author img"
         />
-        <div>
+        <div className="post-author-block-top">
           <p className="post-author-block-name">
             {post.currentPost.authorName}
           </p>
           <ul className="post-author-block-sm">
             <li className="post-author-block-sm-item">
-              <FontAwesomeIcon icon={faGithub} className="fa-xl" />
+              <FontAwesomeIcon icon={faGithub} className="fa-lg" />
             </li>
             <li className="post-author-block-sm-item">
-              <FontAwesomeIcon icon={faLinkedin} className="fa-xl" />
+              <FontAwesomeIcon icon={faLinkedin} className="fa-lg" />
             </li>
             <li className="post-author-block-sm-item">
-              <FontAwesomeIcon icon={faInstagram} className="fa-xl" />
+              <FontAwesomeIcon icon={faInstagram} className="fa-lg" />
             </li>
           </ul>
         </div>

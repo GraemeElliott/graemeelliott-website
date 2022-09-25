@@ -71,11 +71,15 @@ p {
   display: flex;
   flex-direction: row;
   li {
-    padding-right: 1rem;
+    padding-right: 0.75rem;
     :last-child {
       padding-right: 0;
     }
   }
+}
+
+.post-author-block-name {
+  font-weight: 500;
 }
 
 .post-author-block-sm-item {
@@ -88,6 +92,28 @@ p {
     align-items: center;
   }
   .post-author-block-img {
-    width: 10rem;
+    width: 7rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-author-block-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .post-author-block-name {
+    margin-right: 0.5rem;
+  }
+
+  .post-author-block-title {
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .post-author-block-bio {
+    text-align: center;
   }
 }
