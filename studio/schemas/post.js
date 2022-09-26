@@ -18,8 +18,8 @@ export default {
       },
     },
     {
-      name: 'postPanelSize',
-      title: 'Post Panel Size',
+      name: 'postCardType',
+      title: 'Post Card Type',
       type: 'string',
       options: {
         list: [

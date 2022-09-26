@@ -63,11 +63,11 @@ export default function BlogPostView() {
             publishedAt,
             categories
           },
-          "nextPost": *[_type == "post" && ^.publishedAt > publishedAt]|order(publishedAt desc)[0]{
+          "nextPost": *[_type == "post" && ^.publishedAt < publishedAt]|order(publishedAt asc)[0]{
             title,
             slug
           },
-          "previousPost": *[_type == "post" && ^.publishedAt < publishedAt]|order(publishedAt asc)[0]{
+          "previousPost": *[_type == "post" && ^.publishedAt > publishedAt]|order(publishedAt desc)[0]{
             title,
             slug
           }
@@ -96,73 +96,66 @@ export default function BlogPostView() {
           dataset={sanityClient.clientConfig.dataset}
         />
       </div>
-      <hr class="solid"></hr>
+      <hr className="solid"></hr>
       <div className="post-author-block-container">
         <img
           className="post-author-block-img"
           src={urlFor(post.currentPost.authorImage).url()}
           alt="author img"
         />
-        <div className="post-author-block-top">
-          <p className="post-author-block-name">
-            {post.currentPost.authorName}
-          </p>
-          <ul className="post-author-block-sm">
-            <li className="post-author-block-sm-item">
-              <FontAwesomeIcon icon={faGithub} className="fa-lg" />
-            </li>
-            <li className="post-author-block-sm-item">
-              <FontAwesomeIcon icon={faLinkedin} className="fa-lg" />
-            </li>
-            <li className="post-author-block-sm-item">
-              <FontAwesomeIcon icon={faInstagram} className="fa-lg" />
-            </li>
-          </ul>
-        </div>
-        <div className="post-author-block-title">
-          {post.currentPost.authorTitle}
-        </div>
-        <div className="post-author-block-bio">
-          <BlockContent
-            blocks={post.currentPost.authorBio}
-            projectId={sanityClient.clientConfig.projectId}
-            dataset={sanityClient.clientConfig.dataset}
-          />
+        <div className="post-author-block-details">
+          <div className="post-author-block-details-top">
+            <p className="post-author-block-name">
+              {post.currentPost.authorName}
+            </p>
+            <ul className="post-author-block-sm">
+              <li className="post-author-block-sm-item">
+                <FontAwesomeIcon icon={faGithub} className="fa-lg" />
+              </li>
+              <li className="post-author-block-sm-item">
+                <FontAwesomeIcon icon={faLinkedin} className="fa-lg" />
+              </li>
+              <li className="post-author-block-sm-item">
+                <FontAwesomeIcon icon={faInstagram} className="fa-lg" />
+              </li>
+            </ul>
+          </div>
+          <div className="post-author-block-title">
+            {post.currentPost.authorTitle}
+          </div>
+          <div className="post-author-block-bio">
+            <BlockContent
+              blocks={post.currentPost.authorBio}
+              projectId={sanityClient.clientConfig.projectId}
+              dataset={sanityClient.clientConfig.dataset}
+            />
+          </div>
         </div>
       </div>
-      <hr class="solid"></hr>
+      <hr className="solid"></hr>
+
+      <div>
+        {!post.nextPost ? (
+          <div className="previous-post">{post.previousPost.title} </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+
+      {!post.previousPost ? (
+        <div className="next-post">{post.nextPost.title}</div>
+      ) : (
+        <div></div>
+      )}
+
+      {post.nextPost && post.previousPost ? (
+        <div>
+          <div className="previous-post">{post.previousPost.title} </div>
+          <div className="next-post">{post.nextPost.title}</div>
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
-}
-
-{
-  /* <div>
-<div key={post.currentPost.title}>
-  <h2>{post.currentPost.title}</h2>
-  <div>
-    <img
-      src={urlFor(post.currentPost.authorImage).url()}
-      alt="author img"
-    />
-    <h4>{post.currentPost.name}</h4>
-    <h4>{post.currentPost.publishedAt}</h4>
-  </div>
-</div>
-<img src={urlFor(post.currentPost.mainImage).url()} alt="" />
-<div>
-  <BlockContent
-    blocks={post.currentPost.body}
-    projectId={sanityClient.clientConfig.projectId}
-    serializers={serializers}
-    dataset={sanityClient.clientConfig.dataset}
-  />
-</div>
-`
-{!post.nextPost ? (
-  <div> {post.previousPost.title} </div>
-) : (
-  <div> {post.nextPost.title} </div>
-)}
-`
-</div> */
 }

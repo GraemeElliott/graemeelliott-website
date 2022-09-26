@@ -11,3 +11,11 @@ nav {
 .nav-link {
   text-align: right;
 }
+
+@media (min-width: 800px) {
+  nav {
+    .container {
+      max-width: 95% !important;
+    }
+  }
+}

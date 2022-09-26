@@ -16,9 +16,23 @@ a {
 
 /* Temporary styles */
 
-.site-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@media (min-width: 1025px) {
+  .site-container {
+    margin: 0 auto;
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .site-container {
+    margin: 0 auto;
+    max-width: 70%;
+  }
+}
+
+@media (min-width: 2000px) {
+  .site-container {
+    margin: 0 auto;
+    max-width: 40%;
+  }
 }

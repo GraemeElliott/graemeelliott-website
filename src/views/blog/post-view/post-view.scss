@@ -1,5 +1,7 @@
-img {
-  width: 50vh;
+.blog-post-container {
+  max-width: 100%;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 pre {
@@ -11,14 +13,18 @@ pre {
   }
 }
 
+figure {
+  img {
+    display: block;
+    margin: 0 auto;
+    max-width: 95%;
+  }
+}
+
 blockquote {
   font-size: 28px;
   font-weight: 400;
   font-style: italic;
-}
-
-.blog-post-container {
-  width: 50vh;
 }
 
 .post-title {
@@ -86,21 +92,20 @@ p {
   list-style-type: none;
 }
 
-@media (max-width: 480px) {
+@media (min-width: 320px) {
   .post-author-block-container {
     flex-direction: column;
     align-items: center;
   }
   .post-author-block-img {
-    width: 7rem;
+    width: 10rem;
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
   }
 
-  .post-author-block-top {
+  .post-author-block-details {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
   }
 
   .post-author-block-name {
@@ -109,11 +114,51 @@ p {
 
   .post-author-block-title {
     font-weight: 500;
+  }
+  .post-author-block-sm {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .post-author-block-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+  }
+  .post-author-block-img {
+    width: 7rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .post-author-block-title {
     margin-bottom: 1rem;
   }
+}
 
-  .post-author-block-bio {
-    text-align: center;
+@media (min-width: 800px) {
+  .post-author-block-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    img {
+      margin-right: 2rem;
+    }
+  }
+  .post-author-block-details {
+    display: flex;
+    flex-direction: column;
+    .post-author-block-details-top {
+      display: flex;
+      flex-direction: row;
+      .post-author-block-name {
+        margin-bottom: 0;
+      }
+      .post-author-block-sm {
+        margin-bottom: 0;
+      }
+    }
   }
 }
