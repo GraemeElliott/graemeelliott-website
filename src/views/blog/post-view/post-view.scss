@@ -92,6 +92,33 @@ p {
   list-style-type: none;
 }
 
+.prev-next-post-container {
+  display: flex;
+  flex-direction: row;
+  height: 10rem;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .previous-post {
+    width: 50%;
+    text-align: center;
+  }
+
+  .next-post {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .prev-next-post-text {
+    font-weight: 500;
+  }
+}
+
 @media (min-width: 320px) {
   .post-author-block-container {
     flex-direction: column;

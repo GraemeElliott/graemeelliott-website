@@ -1,7 +1,7 @@
 import sanityClient from '../../../client';
 import './post-view.scss';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import imageUrlBuilder from '@sanity/image-url';
 import BlockContent from '@sanity/block-content-to-react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -13,6 +13,7 @@ import {
   faLinkedin,
   faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -65,11 +66,11 @@ export default function BlogPostView() {
           },
           "nextPost": *[_type == "post" && ^.publishedAt < publishedAt]|order(publishedAt asc)[0]{
             title,
-            slug
+            "slug": slug.current
           },
           "previousPost": *[_type == "post" && ^.publishedAt > publishedAt]|order(publishedAt desc)[0]{
             title,
-            slug
+            "slug": slug.current
           }
       }`,
         { slug }
@@ -134,28 +135,40 @@ export default function BlogPostView() {
       </div>
       <hr className="solid"></hr>
 
-      <div>
-        {!post.nextPost ? (
-          <div className="previous-post">{post.previousPost.title} </div>
+      <div className="prev-next-post-container">
+        {post.previousPost ? (
+          <Link
+            to={'/blog/' + post.previousPost.slug}
+            key={post.previousPost.slug}
+            className="previous-post"
+          >
+            <span className="previous-post-title prev-next-post-text">
+              <FontAwesomeIcon icon={faArrowLeft} className="fa-md" />{' '}
+              {post.previousPost.title}
+            </span>
+          </Link>
         ) : (
-          <div></div>
+          <></>
+        )}
+        {post.nextPost ? (
+          <>
+            <div></div>
+            <Link
+              to={'/blog/' + post.nextPost.slug}
+              key={post.nextPost.slug}
+              className="next-post"
+            >
+              <span className="next-post-title prev-next-post-text">
+                {post.nextPost.title}{' '}
+                <FontAwesomeIcon icon={faArrowRight} className="fa-md" />
+              </span>
+            </Link>
+          </>
+        ) : (
+          <></>
         )}
       </div>
-
-      {!post.previousPost ? (
-        <div className="next-post">{post.nextPost.title}</div>
-      ) : (
-        <div></div>
-      )}
-
-      {post.nextPost && post.previousPost ? (
-        <div>
-          <div className="previous-post">{post.previousPost.title} </div>
-          <div className="next-post">{post.nextPost.title}</div>
-        </div>
-      ) : (
-        <></>
-      )}
+      <hr className="solid"></hr>
     </div>
   );
 }
