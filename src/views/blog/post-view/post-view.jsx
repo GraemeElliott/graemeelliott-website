@@ -152,7 +152,7 @@ export default function BlogPostView() {
         )}
         {post.nextPost ? (
           <>
-            <div></div>
+            <span className="previous-post"></span>
             <Link
               to={'/blog/' + post.nextPost.slug}
               key={post.nextPost.slug}

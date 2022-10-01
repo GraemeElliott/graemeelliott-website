@@ -9,6 +9,17 @@ export default {
       type: 'string',
     },
     {
+      name: 'titleColour',
+      title: 'Title colour',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Black', value: 'black' },
+          { title: 'White', value: 'white' },
+        ],
+      },
+    },
+    {
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -62,6 +73,15 @@ export default {
       name: 'body',
       title: 'Body',
       type: 'blockContent',
+    },
+    {
+      name: 'description',
+      title: 'Post description (max. 150 characters)',
+      type: 'string',
+      options: {
+        source: 'body',
+        maxLength: 150,
+      },
     },
   ],
 

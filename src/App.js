@@ -4,6 +4,7 @@ import Homepage from './views/homepage/homepage.jsx';
 import Blog from './views/blog/blog';
 import BlogPostView from './views/blog/post-view/post-view';
 import Header from './components/partials/header/header';
+import Footer from './components/partials/footer/footer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/blog/:slug" element={<BlogPostView />} />
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 }

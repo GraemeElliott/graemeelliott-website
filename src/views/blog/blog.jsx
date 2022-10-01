@@ -3,6 +3,7 @@ import imageUrlBuilder from '@sanity/image-url';
 import './blog.scss';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Moment from 'moment';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -17,10 +18,13 @@ export default function Blog() {
       .fetch(
         `*[_type == "post"] {
                 title,
+                titleColour,
                 slug,
-                postPanelSize,
+                postCardType,
                 "authorName": author->name,
-                "authorImage": author->image,
+                publishedAt,
+                body,
+                description,
                 mainImage{
                     asset -> {
                         _id,
@@ -36,23 +40,51 @@ export default function Blog() {
   return (
     <div>
       <h2>Blog Page</h2>
-      <div>
+      <div className="blog-posts-grid-container">
         {allPosts &&
           allPosts.map((post, index) => (
-            <div>
-              <Link to={'/blog/' + post.slug.current} key={post.slug.current}>
-                <span key={index}>
-                  <img src={urlFor(post.mainImage).url()} alt="" />
-                  <span>
-                    <h2>{post.title}</h2>
+            <div
+              className={'blog-post-card blog-post-card-' + post.postCardType}
+              key={post.slug.current}
+            >
+              <img
+                class="background-image"
+                alt=""
+                src={urlFor(post.mainImage).url()}
+              />
+              <div className="blog-post-card-content">
+                <div
+                  className={
+                    'blog-post-card-meta blog-post-card-title-' +
+                    post.titleColour
+                  }
+                >
+                  <span className="blog-post-card-author">
+                    {post.authorName}
                   </span>
-                </span>
-              </Link>
-              <span>
-                <h2>{post.authorName}</h2>
-                <img src={urlFor(post.authorImage).url()} alt="author img" />
-                <h2 className={post.postPanelSize}>{post.postPanelSize}</h2>
-              </span>
+                  <span className="blog-post-card-date">
+                    {Moment(post.publishedAt).format('DD MMMM YYYY')}
+                  </span>
+                </div>
+                <h4
+                  className={
+                    'blog-post-card-title blog-post-card-title-' +
+                    post.titleColour
+                  }
+                >
+                  {post.title}
+                </h4>
+                {post.postCardType === 'card-type-text' ? (
+                  <div className="blog-post-card-body">
+                    <p className="blog-post-card-description">
+                      {post.description}
+                    </p>
+                    <p className="blog-post-card-read">Read More</p>
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
             </div>
           ))}
       </div>

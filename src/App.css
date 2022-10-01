@@ -30,9 +30,16 @@ a {
   }
 }
 
+@media (min-width: 1500px) {
+  .site-container {
+    margin: 0 auto;
+    max-width: 80%;
+  }
+}
+
 @media (min-width: 2000px) {
   .site-container {
     margin: 0 auto;
-    max-width: 40%;
+    max-width: 76rem;
   }
 }

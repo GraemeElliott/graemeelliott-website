@@ -1,3 +1,79 @@
-img {
-  width: 30rem;
+.blog-posts-grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+
+  .blog-post-card {
+    flex: 0 0 auto;
+    margin: 20px;
+    width: 22.5rem;
+    height: 570px;
+    box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .blog-post-card-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .blog-post-card-content {
+      position: absolute;
+      bottom: 45%;
+      margin-left: 1rem;
+      margin-right: 1rem;
+
+      .blog-post-card-title {
+        text-align: center;
+        line-height: 2.2rem;
+        margin-top: 0.5rem;
+        font-weight: 700;
+      }
+      .blog-post-card-meta {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        span {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+
+  .blog-post-card-text {
+    img {
+      width: 100%;
+      height: 50%;
+      object-fit: cover;
+    }
+  }
+}
+
+.blog-post-card-title-white {
+  color: #fff;
+}
+
+.blog-post-card-title-black {
+  color: #000;
+}
+
+.blog-post-card-meta {
+  display: flex;
+  flex-direction: row;
+  :first-child::after {
+    content: '/';
+    margin: 0 0.5rem;
+  }
+  .blog-post-card-author,
+  .blog-post-card-date {
+    font-size: 0.8rem;
+  }
 }
