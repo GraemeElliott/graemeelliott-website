@@ -31,6 +31,10 @@ export default function Blog() {
                         url
                     }
                 },
+                categories [] -> {
+                  title,
+                  slug
+                }
             }`
       )
       .then((data) => setAllPosts(data))
@@ -39,12 +43,14 @@ export default function Blog() {
 
   return (
     <div>
-      <h2>Blog Page</h2>
-
       <div className="blog-post-card-categories">
-        <span>Web Development</span>
-        <span>Product Management</span>
-        <span>Personal</span>
+        <span value="all" className="selected">
+          All
+        </span>
+        <span value="web-development">Web Development</span>
+        <span value="product-management">Product Management</span>
+        <span value="data-analysis">Data Analysis</span>
+        <span value="personal">Personal</span>
       </div>
 
       <div className="blog-posts-grid-container">

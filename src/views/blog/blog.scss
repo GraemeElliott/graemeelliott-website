@@ -1,16 +1,30 @@
 .blog-post-card-categories {
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  text-align: center;
 
   span {
-    margin-right: 3rem;
+    margin-right: 1rem;
     :not(:last-child) {
       margin-right: 0rem;
     }
-    background-color: cadetblue;
-    border-radius: 10rem;
-    padding: 0.5rem;
+    padding: 0.5rem 2rem;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+
+    &.selected {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+
+  span:hover {
+    cursor: pointer;
   }
 }
 
