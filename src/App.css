@@ -4,7 +4,7 @@
 }
 
 body {
-  margin: 0 auto;
+  margin: 0 10px;
   font-family: 'Poppins', sans-serif;
   position: relative;
 }
@@ -19,14 +19,13 @@ a {
 @media (min-width: 1025px) {
   .site-container {
     margin: 0 auto;
-    max-width: 90%;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1250px) {
   .site-container {
     margin: 0 auto;
-    max-width: 70%;
+    max-width: 100%;
   }
 }
 
@@ -37,9 +36,15 @@ a {
   }
 }
 
+@media (max-width: 1500px) {
+  .site-container {
+    margin: 0 auto;
+  }
+}
+
 @media (min-width: 2000px) {
   .site-container {
     margin: 0 auto;
-    max-width: 76rem;
+    max-width: 50%;
   }
 }

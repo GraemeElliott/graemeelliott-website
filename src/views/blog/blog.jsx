@@ -40,6 +40,13 @@ export default function Blog() {
   return (
     <div>
       <h2>Blog Page</h2>
+
+      <div className="blog-post-card-categories">
+        <span>Web Development</span>
+        <span>Product Management</span>
+        <span>Personal</span>
+      </div>
+
       <div className="blog-posts-grid-container">
         {allPosts &&
           allPosts.map((post, index) => (
@@ -66,20 +73,28 @@ export default function Blog() {
                     {Moment(post.publishedAt).format('DD MMMM YYYY')}
                   </span>
                 </div>
-                <h4
-                  className={
-                    'blog-post-card-title blog-post-card-title-' +
-                    post.titleColour
-                  }
-                >
-                  {post.title}
-                </h4>
-                {post.postCardType === 'card-type-text' ? (
+                <Link to={'/blog/' + post.slug.current} key={post.slug.current}>
+                  <h4
+                    className={
+                      'blog-post-card-title blog-post-card-title-' +
+                      post.titleColour
+                    }
+                  >
+                    {post.title}
+                  </h4>
+                </Link>
+                {post.postCardType === 'text' ? (
                   <div className="blog-post-card-body">
                     <p className="blog-post-card-description">
                       {post.description}
                     </p>
-                    <p className="blog-post-card-read">Read More</p>
+                    <Link
+                      to={'/blog/' + post.slug.current}
+                      key={post.slug.current}
+                      className="blog-post-card-read-more"
+                    >
+                      Read More
+                    </Link>
                   </div>
                 ) : (
                   <></>
