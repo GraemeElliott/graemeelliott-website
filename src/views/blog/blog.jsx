@@ -16,7 +16,8 @@ export default function Blog() {
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "post"] {
+        `*[_type == "post"] | order(publishedAt desc) {
+                _id,
                 title,
                 titleColour,
                 slug,
@@ -39,20 +40,10 @@ export default function Blog() {
       )
       .then((data) => setAllPosts(data))
       .catch(console.error);
-  }, []);
+  });
 
   return (
     <div>
-      <div className="blog-post-card-categories">
-        <span value="all" className="selected">
-          All
-        </span>
-        <span value="web-development">Web Development</span>
-        <span value="product-management">Product Management</span>
-        <span value="data-analysis">Data Analysis</span>
-        <span value="personal">Personal</span>
-      </div>
-
       <div className="blog-posts-grid-container">
         {allPosts &&
           allPosts.map((post, index) => (
@@ -61,7 +52,7 @@ export default function Blog() {
               key={post.slug.current}
             >
               <img
-                class="background-image"
+                className="background-image"
                 alt=""
                 src={urlFor(post.mainImage).url()}
               />
