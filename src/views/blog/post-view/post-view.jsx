@@ -62,7 +62,10 @@ export default function BlogPostView() {
             "authorInstagram": author->instagramUrl,
             "authorBio": author->bio,
             publishedAt,
-            categories
+            categories [] -> {
+              title,
+              slug
+            }
           },
           "nextPost": *[_type == "post" && ^.publishedAt < publishedAt]|order(publishedAt asc)[0]{
             title,
@@ -81,94 +84,104 @@ export default function BlogPostView() {
   if (!post) return <div>Loading...</div>;
 
   return (
-    <div className="blog-post-container">
-      <h1 className="post-title">{post.currentPost.title}</h1>
-      <ul className="post-meta">
-        <li className="post-meta-item">{post.currentPost.authorName}</li>
-        <li className="post-meta-item">
-          {Moment(post.currentPost.publishedAt).format('DD MMMM YYYY')}
-        </li>
-      </ul>
-      <div className="post-content">
-        <BlockContent
-          blocks={post.currentPost.body}
-          projectId={sanityClient.clientConfig.projectId}
-          serializers={serializers}
-          dataset={sanityClient.clientConfig.dataset}
-        />
-      </div>
-      <hr className="solid"></hr>
-      <div className="post-author-block-container">
-        <img
-          className="post-author-block-img"
-          src={urlFor(post.currentPost.authorImage).url()}
-          alt="author img"
-        />
-        <div className="post-author-block-details">
-          <div className="post-author-block-details-top">
-            <p className="post-author-block-name">
-              {post.currentPost.authorName}
-            </p>
-            <ul className="post-author-block-sm">
-              <li className="post-author-block-sm-item">
-                <FontAwesomeIcon icon={faGithub} className="fa-lg" />
-              </li>
-              <li className="post-author-block-sm-item">
-                <FontAwesomeIcon icon={faLinkedin} className="fa-lg" />
-              </li>
-              <li className="post-author-block-sm-item">
-                <FontAwesomeIcon icon={faInstagram} className="fa-lg" />
-              </li>
-            </ul>
-          </div>
-          <div className="post-author-block-title">
-            {post.currentPost.authorTitle}
-          </div>
-          <div className="post-author-block-bio">
-            <BlockContent
-              blocks={post.currentPost.authorBio}
-              projectId={sanityClient.clientConfig.projectId}
-              dataset={sanityClient.clientConfig.dataset}
-            />
+    <div className="blog-post-view-container">
+      <div className="blog-post-container">
+        <h1 className="post-title">{post.currentPost.title}</h1>
+        <ul className="post-meta">
+          <li className="post-meta-item">{post.currentPost.authorName}</li>
+          <li className="post-meta-item">
+            {Moment(post.currentPost.publishedAt).format('DD MMMM YYYY')}
+          </li>
+          {post.currentPost.categories.map((category) => (
+            <Link
+              className="post-meta-item post-meta-item-category"
+              to={'/blog/' + category.slug.current}
+              key={post.previousPost.slug}
+            >
+              {category.title}{' '}
+            </Link>
+          ))}
+        </ul>
+        <div className="post-content">
+          <BlockContent
+            blocks={post.currentPost.body}
+            projectId={sanityClient.clientConfig.projectId}
+            serializers={serializers}
+            dataset={sanityClient.clientConfig.dataset}
+          />
+        </div>
+        <hr className="solid"></hr>
+        <div className="post-author-block-container">
+          <img
+            className="post-author-block-img"
+            src={urlFor(post.currentPost.authorImage).url()}
+            alt="author img"
+          />
+          <div className="post-author-block-details">
+            <div className="post-author-block-details-top">
+              <p className="post-author-block-name">
+                {post.currentPost.authorName}
+              </p>
+              <ul className="post-author-block-sm">
+                <li className="post-author-block-sm-item">
+                  <FontAwesomeIcon icon={faGithub} className="fa-lg" />
+                </li>
+                <li className="post-author-block-sm-item">
+                  <FontAwesomeIcon icon={faLinkedin} className="fa-lg" />
+                </li>
+                <li className="post-author-block-sm-item">
+                  <FontAwesomeIcon icon={faInstagram} className="fa-lg" />
+                </li>
+              </ul>
+            </div>
+            <div className="post-author-block-title">
+              {post.currentPost.authorTitle}
+            </div>
+            <div className="post-author-block-bio">
+              <BlockContent
+                blocks={post.currentPost.authorBio}
+                projectId={sanityClient.clientConfig.projectId}
+                dataset={sanityClient.clientConfig.dataset}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <hr className="solid"></hr>
+        <hr className="solid"></hr>
 
-      <div className="prev-next-post-container">
-        {post.previousPost ? (
-          <Link
-            to={'/blog/' + post.previousPost.slug}
-            key={post.previousPost.slug}
-            className="previous-post"
-          >
-            <span className="previous-post-title prev-next-post-text">
-              <FontAwesomeIcon icon={faArrowLeft} className="fa-md" />{' '}
-              {post.previousPost.title}
-            </span>
-          </Link>
-        ) : (
-          <></>
-        )}
-        {post.nextPost ? (
-          <>
-            <span className="previous-post"></span>
+        <div className="prev-next-post-container">
+          {post.previousPost ? (
             <Link
-              to={'/blog/' + post.nextPost.slug}
-              key={post.nextPost.slug}
-              className="next-post"
+              to={'/blog/post/' + post.previousPost.slug}
+              key={post.previousPost.slug}
+              className="previous-post"
             >
-              <span className="next-post-title prev-next-post-text">
-                {post.nextPost.title}{' '}
-                <FontAwesomeIcon icon={faArrowRight} className="fa-md" />
+              <span className="previous-post-title prev-next-post-text">
+                <FontAwesomeIcon icon={faArrowLeft} className="fa-md" />{' '}
+                {post.previousPost.title}
               </span>
             </Link>
-          </>
-        ) : (
-          <></>
-        )}
+          ) : (
+            <></>
+          )}
+          {post.nextPost ? (
+            <>
+              <span className="previous-post"></span>
+              <Link
+                to={'/blog/post/' + post.nextPost.slug}
+                key={post.nextPost.slug}
+                className="next-post"
+              >
+                <span className="next-post-title prev-next-post-text">
+                  {post.nextPost.title}{' '}
+                  <FontAwesomeIcon icon={faArrowRight} className="fa-md" />
+                </span>
+              </Link>
+            </>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
-      <hr className="solid"></hr>
     </div>
   );
 }

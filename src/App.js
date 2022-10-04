@@ -5,6 +5,7 @@ import Blog from './views/blog/blog';
 import BlogPostView from './views/blog/post-view/post-view';
 import Header from './components/partials/header/header';
 import Footer from './components/partials/footer/footer';
+import BlogByCategory from './views/blog/blog-by-category/blog-by-category';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPostView />} />
+          <Route path="/blog/:category" element={<BlogByCategory />} />
+          <Route path="/blog/post/:slug" element={<BlogPostView />} />
         </Routes>
       </div>
       <Footer />

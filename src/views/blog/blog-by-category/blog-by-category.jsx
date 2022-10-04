@@ -1,6 +1,6 @@
-import sanityClient from '../../client';
+import sanityClient from '../../../client';
 import imageUrlBuilder from '@sanity/image-url';
-import './blog.scss';
+import '../blog.scss';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
@@ -10,13 +10,15 @@ function urlFor(source) {
   return builder.image(source);
 }
 
-export default function Blog() {
+export default function BlogByCategory() {
   const [allPosts, setAllPosts] = useState(null);
+
+  let selectedCategory = window.location.pathname.split('/')[2];
 
   useEffect(() => {
     sanityClient
       .fetch(
-        `*[_type == "post"] | order(publishedAt desc) {
+        `*[_type == "post" && $keyword in categories[]->slug.current] | order(publishedAt desc) {
                 _id,
                 title,
                 titleColour,
@@ -36,14 +38,15 @@ export default function Blog() {
                   title,
                   slug
                 }
-            }`
+            }`,
+        { keyword: selectedCategory }
       )
       .then((data) => setAllPosts(data))
       .catch(console.error);
   });
 
   return (
-    <div className="content-container">
+    <div className="blog-posts-card-container">
       <div className="blog-posts-grid-container">
         {allPosts &&
           allPosts.map((post, index) => (
