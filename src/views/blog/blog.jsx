@@ -43,66 +43,61 @@ export default function Blog() {
   });
 
   return (
-    <div className="content-container">
-      <div className="blog-posts-grid-container">
-        {allPosts &&
-          allPosts.map((post, index) => (
-            <div
-              className={'blog-post-card blog-post-card-' + post.postCardType}
-              key={post.slug.current}
-            >
-              <img
-                className="background-image"
-                alt=""
-                src={urlFor(post.mainImage).url()}
-              />
-              <div className="blog-post-card-content">
-                <div
+    <div className="container blog-posts-grid-container">
+      {allPosts &&
+        allPosts.map((post, index) => (
+          <div
+            className={'blog-post-card blog-post-card-' + post.postCardType}
+            key={post.slug.current}
+          >
+            <img
+              className="background-image"
+              alt=""
+              src={urlFor(post.mainImage).url()}
+            />
+            <div className="blog-post-card-content">
+              <div
+                className={
+                  'blog-post-card-meta blog-post-card-title-' + post.titleColour
+                }
+              >
+                <span className="blog-post-card-author">{post.authorName}</span>
+                <span className="blog-post-card-date">
+                  {Moment(post.publishedAt).format('DD MMMM YYYY')}
+                </span>
+              </div>
+              <Link
+                to={'/blog/post/' + post.slug.current}
+                key={post.slug.current}
+              >
+                <h4
                   className={
-                    'blog-post-card-meta blog-post-card-title-' +
+                    'blog-post-card-title blog-post-card-title-' +
                     post.titleColour
                   }
                 >
-                  <span className="blog-post-card-author">
-                    {post.authorName}
-                  </span>
-                  <span className="blog-post-card-date">
-                    {Moment(post.publishedAt).format('DD MMMM YYYY')}
-                  </span>
-                </div>
-                <Link
-                  to={'/blog/post/' + post.slug.current}
-                  key={post.slug.current}
-                >
-                  <h4
-                    className={
-                      'blog-post-card-title blog-post-card-title-' +
-                      post.titleColour
-                    }
+                  {post.title}
+                </h4>
+              </Link>
+              {post.postCardType === 'text' ? (
+                <div className="blog-post-card-body">
+                  <p className="blog-post-card-description">
+                    {post.description}
+                  </p>
+                  <Link
+                    to={'/blog/post/' + post.slug.current}
+                    key={post.slug.current}
+                    className="blog-post-card-read-more"
                   >
-                    {post.title}
-                  </h4>
-                </Link>
-                {post.postCardType === 'text' ? (
-                  <div className="blog-post-card-body">
-                    <p className="blog-post-card-description">
-                      {post.description}
-                    </p>
-                    <Link
-                      to={'/blog/post/' + post.slug.current}
-                      key={post.slug.current}
-                      className="blog-post-card-read-more"
-                    >
-                      Read More
-                    </Link>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </div>
+                    Read More
+                  </Link>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
-          ))}
-      </div>
+          </div>
+        ))}
     </div>
   );
 }

@@ -11,13 +11,10 @@
   .blog-post-card {
     flex: 0 0 auto;
     margin: 20px;
-    width: 25rem;
+    width: 23rem;
     height: 40rem;
     box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.1);
     position: relative;
-    :last-child {
-      margin-right: 0px;
-    }
   }
 
   .blog-post-card-meta {
@@ -122,24 +119,36 @@
     justify-content: center;
 
     .blog-post-card {
-      width: 20rem !important;
+      width: 20rem;
+      height: 35rem !important;
     }
   }
 }
+
 @media (min-width: 700px) {
   .blog-post-card {
-    width: 21rem !important;
+    width: 19rem !important;
+    height: 35rem !important;
   }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 992px) {
   .blog-post-card {
-    width: 23rem !important;
+    width: 25rem !important;
+    height: 40rem !important;
   }
 }
 
 @media (min-width: 1200px) {
   .blog-post-card {
-    width: 23.9rem !important;
+    width: 20rem !important;
+    height: 40rem !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .blog-post-card {
+    width: 23rem !important;
+    height: 40rem !important;
   }
 }
