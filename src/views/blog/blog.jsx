@@ -4,6 +4,8 @@ import './blog.scss';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -43,7 +45,7 @@ export default function Blog() {
   });
 
   return (
-    <div className="container blog-posts-grid-container">
+    <div className="blog-posts-grid-container">
       {allPosts &&
         allPosts.map((post, index) => (
           <div

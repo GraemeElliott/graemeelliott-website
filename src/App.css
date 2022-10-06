@@ -45,6 +45,6 @@ a {
 @media (min-width: 2000px) {
   .site-container {
     margin: 0 auto;
-    max-width: 70%;
+    max-width: 50%;
   }
 }
