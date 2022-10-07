@@ -222,8 +222,20 @@ p {
   }
 }
 
-@media (min-width: 2000px) {
+@media (min-width: 1000px) {
   .blog-post-container {
     max-width: 80%;
+  }
+}
+
+@media (min-width: 1500px) {
+  .blog-post-container {
+    max-width: 60%;
+  }
+}
+
+@media (min-width: 2000px) {
+  .blog-post-container {
+    max-width: 40%;
   }
 }
