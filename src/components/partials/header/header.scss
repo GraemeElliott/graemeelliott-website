@@ -1,15 +1,28 @@
 nav {
-  background-color: cadetblue;
-  height: 100%;
-}
-.container {
-  button {
-    border: none;
-  }
+  background: transparent;
+  border-bottom: 1px solid #d3d3d3;
+  overflow: hidden;
+  position: absolute;
 }
 
-.nav-link {
-  text-align: right;
+.container {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.navbar-nav {
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: 800px) {

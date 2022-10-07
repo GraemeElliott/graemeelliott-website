@@ -67,12 +67,13 @@
     .blog-post-card-body {
       margin-top: 1rem;
       .blog-post-card-description {
-        font-size: 13px;
+        font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
+        margin-bottom: 3rem;
       }
       .blog-post-card-read-more {
         font-size: 12px;
