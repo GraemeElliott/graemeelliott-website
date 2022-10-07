@@ -13,38 +13,3 @@ a {
   text-decoration: none;
   color: #000000;
 }
-
-/* Temporary styles */
-
-@media (min-width: 1025px) {
-  .site-container {
-    margin: 0 auto;
-  }
-}
-
-@media (min-width: 1250px) {
-  .site-container {
-    margin: 0 auto;
-    max-width: 100%;
-  }
-}
-
-@media (min-width: 1500px) {
-  .site-container {
-    margin: 0 auto;
-    max-width: 90%;
-  }
-}
-
-@media (max-width: 1500px) {
-  .site-container {
-    margin: 0 auto;
-  }
-}
-
-@media (min-width: 2000px) {
-  .site-container {
-    margin: 0 auto;
-    max-width: 50%;
-  }
-}

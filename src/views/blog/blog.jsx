@@ -4,8 +4,6 @@ import './blog.scss';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {

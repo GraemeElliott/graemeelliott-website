@@ -46,7 +46,7 @@ export default function BlogByCategory() {
   });
 
   return (
-    <div className="container blog-posts-grid-container">
+    <div className="blog-posts-grid-container">
       {allPosts &&
         allPosts.map((post, index) => (
           <div
