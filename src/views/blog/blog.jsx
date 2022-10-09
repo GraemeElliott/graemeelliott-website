@@ -4,6 +4,7 @@ import './blog.scss';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
+import Pagination from '../../components/partials/pagination/pagination';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -11,7 +12,10 @@ function urlFor(source) {
 }
 
 export default function Blog() {
-  const [allPosts, setAllPosts] = useState(null);
+  const [allPosts, setAllPosts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(6);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     sanityClient
@@ -40,13 +44,17 @@ export default function Blog() {
       )
       .then((data) => setAllPosts(data))
       .catch(console.error);
-  });
+  }, []);
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
     <div>
       <div className="blog-posts-grid-container">
-        {allPosts &&
-          allPosts.map((post, index) => (
+        {currentPosts &&
+          currentPosts.map((post, index) => (
             <div
               className={'blog-post-card blog-post-card-' + post.postCardType}
               key={post.slug.current}
@@ -102,6 +110,13 @@ export default function Blog() {
               </div>
             </div>
           ))}
+      </div>
+      <div>
+        <Pagination
+          postsPerPage={postsPerPage}
+          totalPosts={allPosts.length}
+          paginate={paginate}
+        />
       </div>
     </div>
   );
