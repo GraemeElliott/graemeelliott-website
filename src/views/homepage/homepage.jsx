@@ -1,15 +1,109 @@
 import './homepage.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
+import img from '../../assets/profile-image.jpg';
 
 export default function Homepage() {
   return (
     <div className="home-container">
       <div className="background-image-top"></div>
       <div className="hero">
-        <h2>Graeme Elliott</h2>
-        <h3>Brand Protection Specialist/</h3>
-        <h3>Subjec Matter Expert</h3>
-        <div>Social Media Icons</div>
-        <div>Font Awesome Down Button</div>
+        <h2 className="name">Graeme Elliott</h2>
+        <p className="job-title">
+          Brand Protection Specialist / Subject Matter Expert
+        </p>
+        <div className="social-media-icons">
+          <li>
+            <FontAwesomeIcon icon={faGithub} className="fa-lg fa-github" />
+          </li>
+          <li>
+            <FontAwesomeIcon icon={faLinkedin} className="fa-lg fa-linkedin" />
+          </li>
+        </div>
+        <a className="hero-arrow" href="#about-me-top">
+          <FontAwesomeIcon
+            icon={faCircleDown}
+            className="fa-light arrow-icon"
+          />
+        </a>
+      </div>
+
+      <div id="about-me-top"></div>
+
+      <div className="profile-image">
+        <img src={img} alt="" />
+      </div>
+
+      <div className="main-content">
+        <div className="about-me-container">
+          <h1 className="about-me-header">About Me</h1>
+
+          <p className="about-me-text">
+            My name is Graeme Elliott and I am an accomplished Specialist and
+            Subject Matter Expert in Brand Protection with more than ten years’
+            success in helping companies define and design value driven
+            solutions that assist in achieving overall strategic business
+            growth. I have strong analytical and communication skills coupled
+            with the ability to multi-task, work independently, and thrive in a
+            fast-paced, start-up environment.
+          </p>
+          <p>
+            Over the years I have been developing and implementing successful
+            global brand protection programs for clients to help protect their
+            brands’ value. I have also shown my ability to develop deep and
+            enduring relationships with clients, where I have maintained
+            existing services as well as seek new opportunities for expansion.
+          </p>
+          <p>
+            As a proactive leader, my style of working is a collaborative type;
+            I excel at providing a detailed analysis and commentary of various
+            infringement issues so that together with clients, we can choose and
+            implement the most practical and efficient enforcement strategies.
+          </p>
+          <p>
+            In making use of multiple technologies to identify, examine, and
+            eliminate infringing content for brands, I help protect the brands’
+            value by creating and implementing a successful brand protection
+            strategy. I have also produced investigative reports into brand
+            protection issues such as the sale of counterfeit goods, websites
+            phishing for customer details, unauthorised use of branding and sale
+            of goods, and internet piracy. My research findings have been
+            distributed in the media.
+          </p>
+          <p>
+            Throughout my career I have gained skills and experience in data
+            gathering, analysis and visualisation. This includes using
+            technologies such as SQL for database queries as well as Power BI
+            and Tableau for data cleaning and visualisation. This has enabled me
+            to produce dashboards and reports that have been used to give
+            further insights into trends, map out any problems needing to be
+            sold, and make decision making easier for my team and my clients.
+            Data analysis, as well as presenting my findings, is at the
+            forefront of every task that I do.
+          </p>
+          <p>
+            I also have experience in Product Management responsibilities where
+            I have coordinated the gathering of knowledge to problem solve and
+            improve the products I have used through my career, develop and
+            execute innovative product strategies that supports awareness,
+            engagement and satisfaction, and facilitate the collaboration of
+            multiple departments. This has led to the successful development and
+            deployment of new functionalities and features that have benefited
+            the teams, clients and the company.
+          </p>
+          <p>
+            In my spare time I am budding Web Developer, spending my time
+            learning web development technologies such as JavaScript, React and
+            Vue.JS through the use of online resources and textbooks. This has
+            enabled me to gain an in-depth understanding of how websites are
+            structured, which is a great interest of mine. I am also able to be
+            creative in building beautiful and responsive websites, and often
+            learn more about website design with every project I undertake.
+            Whilst most of my projects are predominantly front-end, I have also
+            been learning back-end technologies such as Node.js and Express.js.
+          </p>
+        </div>
       </div>
     </div>
   );

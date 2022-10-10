@@ -51,7 +51,8 @@ export default function Blog() {
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div>
+    <div className="page-container">
+      <div></div>
       <div className="blog-posts-grid-container">
         {currentPosts &&
           currentPosts.map((post, index) => (
