@@ -149,9 +149,17 @@
     grid-template-columns: repeat(auto-fill, 20.5rem) !important;
     grid-auto-rows: 35rem;
   }
+
+  .blog-posts-grid-container
+    .blog-post-card-text
+    .blog-post-card-body
+    .blog-post-card-description {
+    -webkit-line-clamp: 3;
+    margin-bottom: 2rem;
+  }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
   .blog-posts-grid-container
     .blog-post-card-text
     .blog-post-card-body
