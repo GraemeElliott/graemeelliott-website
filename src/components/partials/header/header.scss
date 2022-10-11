@@ -4,9 +4,11 @@ nav {
   line-height: 4em;
   background-color: 'transparent';
   color: black;
-  transition: transform 100ms ease-in-out;
+  transition: transform 120ms ease-in-out;
   z-index: 9999;
-  border-bottom: 0.5px solid lightgray;
+  min-height: 50px;
+  margin: auto;
+  transform: translate3d(0, 0, 0);
 }
 
 .navbar {
@@ -25,7 +27,10 @@ nav.navbar--hidden {
 
 nav.navbar--scroll-up {
   background-color: #000;
+  width: 100%;
   border-bottom: none;
+  z-index: 1 !important;
+  scroll-behavior: smooth \!important;
 }
 
 nav.navbar--scroll-up > div > div > a {

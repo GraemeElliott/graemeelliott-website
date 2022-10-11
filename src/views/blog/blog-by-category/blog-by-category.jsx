@@ -40,7 +40,8 @@ export default function BlogByCategory() {
                 },
                 categories [] -> {
                   title,
-                  slug
+                  slug,
+                  description
                 }
             }`,
         { keyword: selectedCategory }
@@ -54,7 +55,12 @@ export default function BlogByCategory() {
   const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
 
   return (
-    <div>
+    <div className="page-container">
+      <div className="blog-header">
+        <p className="blog-header-title">
+          {selectedCategory.replace(/-/g, ' ')}
+        </p>
+      </div>
       <div className="blog-posts-grid-container">
         {currentPosts &&
           currentPosts.map((post, index) => (

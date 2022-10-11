@@ -5,8 +5,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import useScrollListener from '../../../hooks/useScrollListener';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export default function Header() {
+  const location = useLocation();
   const [navClassList, setNavClassList] = useState([]);
   const scroll = useScrollListener();
 
@@ -14,7 +16,7 @@ export default function Header() {
   useEffect(() => {
     const _classList = [];
 
-    if (scroll.y < 150 && scroll.y - scroll.lastY < 0)
+    if (scroll.y < 10 && scroll.y - scroll.lastY < 0)
       _classList.push('navbar navbar--top');
 
     if (scroll.y > 10 && scroll.y - scroll.lastY > 0)
@@ -23,8 +25,10 @@ export default function Header() {
     if (scroll.lastY > scroll.y && scroll.y > 0)
       _classList.push('navbar navbar--scroll-up');
 
+    if (location.pathname === '/') _classList.push('navbar-dark');
+
     setNavClassList(_classList);
-  }, [scroll.y, scroll.lastY]);
+  }, [scroll.y, scroll.lastY, location.pathname]);
 
   return (
     <Navbar
@@ -36,7 +40,7 @@ export default function Header() {
       className={navClassList.join(' ')}
     >
       <Container>
-        <Nav className="me-auto mx-auto">
+        <Nav className="me-auto mx-auto" activeKey={location.pathname}>
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="/portfolio">Portfolio</Nav.Link>
           <Nav.Link href="/blog">Blog</Nav.Link>

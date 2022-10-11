@@ -76,11 +76,11 @@ export default {
     },
     {
       name: 'description',
-      title: 'Post description (max. 150 characters)',
+      title: 'Post description (max. 200 characters)',
       type: 'string',
       options: {
         source: 'body',
-        maxLength: 150,
+        maxLength: 200,
       },
     },
   ],

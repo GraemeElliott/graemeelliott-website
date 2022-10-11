@@ -14,7 +14,7 @@ function urlFor(source) {
 export default function Blog() {
   const [allPosts, setAllPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(6);
+  const [postsPerPage] = useState(9);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
@@ -52,7 +52,26 @@ export default function Blog() {
 
   return (
     <div className="page-container">
-      <div></div>
+      <div className="blog-header">
+        <p className="blog-header-title">Blog</p>
+      </div>
+      <div className="category-tags">
+        <Link to={'/blog/web-development'} key={'web-development'}>
+          Web Development
+        </Link>
+        <Link to={'/blog/product-management'} key={'product-management'}>
+          Product Management
+        </Link>
+        <Link to={'/blog/data-analysis'} key={'data-analysis'}>
+          Data Analysis
+        </Link>
+        <Link to={'/blog/music'} key={'music'}>
+          Music
+        </Link>
+        <Link to={'/blog/personal'} key={'personal'}>
+          Personal
+        </Link>
+      </div>
       <div className="blog-posts-grid-container">
         {currentPosts &&
           currentPosts.map((post, index) => (
