@@ -8,11 +8,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faGithub,
-  faLinkedin,
-  faInstagram,
-} from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const builder = imageUrlBuilder(sanityClient);
@@ -124,13 +120,22 @@ export default function BlogPostView() {
               </p>
               <ul className="post-author-block-sm">
                 <li className="post-author-block-sm-item">
-                  <FontAwesomeIcon icon={faGithub} className="fa-lg" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.github.com/graemeelliott"
+                  >
+                    <FontAwesomeIcon icon={faGithub} className="fa-lg" />
+                  </a>
                 </li>
                 <li className="post-author-block-sm-item">
-                  <FontAwesomeIcon icon={faLinkedin} className="fa-lg" />
-                </li>
-                <li className="post-author-block-sm-item">
-                  <FontAwesomeIcon icon={faInstagram} className="fa-lg" />
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://www.linkedin.com/in/graeme-elliott/"
+                  >
+                    <FontAwesomeIcon icon={faLinkedin} className="fa-lg" />
+                  </a>
                 </li>
               </ul>
             </div>

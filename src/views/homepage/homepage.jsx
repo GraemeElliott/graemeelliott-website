@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
 import img from '../../assets/profile-image.jpg';
+import { Link } from 'react-router-dom';
 
 export default function Homepage() {
   return (
@@ -15,10 +16,25 @@ export default function Homepage() {
         </p>
         <div className="social-media-icons">
           <li>
-            <FontAwesomeIcon icon={faGithub} className="fa-lg fa-github" />
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.github.com/graemeelliott"
+            >
+              <FontAwesomeIcon icon={faGithub} className="fa-lg fa-github" />
+            </a>
           </li>
           <li>
-            <FontAwesomeIcon icon={faLinkedin} className="fa-lg fa-linkedin" />
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.linkedin.com/in/graeme-elliott/"
+            >
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                className="fa-lg fa-linkedin"
+              />
+            </a>
           </li>
         </div>
         <a className="hero-arrow" href="#about-me-top">
@@ -58,7 +74,7 @@ export default function Homepage() {
           <p>
             As a proactive leader, my style of working is a collaborative type;
             I excel at providing a detailed analysis and commentary of various
-            infringement issues so that together with clients, we can choose and
+            infringement issues so that together with clients we can choose and
             implement the most practical and efficient enforcement strategies.
           </p>
           <p>
@@ -67,8 +83,8 @@ export default function Homepage() {
             value by creating and implementing a successful brand protection
             strategy. I have also produced investigative reports into brand
             protection issues such as the sale of counterfeit goods, websites
-            phishing for customer details, unauthorised use of branding and sale
-            of goods, and internet piracy. My research findings have been
+            phishing for user details, unauthorised use of branding and sale of
+            goods, and internet piracy. My research findings have also been
             distributed in the media.
           </p>
           <p>
@@ -85,7 +101,7 @@ export default function Homepage() {
           <p>
             I also have experience in Product Management responsibilities where
             I have coordinated the gathering of knowledge to problem solve and
-            improve the products I have used through my career, develop and
+            improve the products I have used throughout my career, develop and
             execute innovative product strategies that supports awareness,
             engagement and satisfaction, and facilitate the collaboration of
             multiple departments. This has led to the successful development and
@@ -101,7 +117,7 @@ export default function Homepage() {
             creative in building beautiful and responsive websites, and often
             learn more about website design with every project I undertake.
             Whilst most of my projects are predominantly front-end, I have also
-            been learning back-end technologies such as Node.js and Express.js.
+            been learning back-end technologies such as Node.js.
           </p>
         </div>
       </div>
