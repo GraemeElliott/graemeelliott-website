@@ -22,8 +22,7 @@ export default function Header() {
     if (scroll.y > 10 && scroll.y - scroll.lastY > 0)
       _classList.push('navbar navbar--hidden');
 
-    if (scroll.lastY > scroll.y && scroll.y > 0)
-      _classList.push('navbar navbar--scroll-up');
+    if (scroll.y > 0) _classList.push('navbar navbar--scroll-up bg-black');
 
     if (location.pathname === '/') _classList.push('navbar-dark');
 
