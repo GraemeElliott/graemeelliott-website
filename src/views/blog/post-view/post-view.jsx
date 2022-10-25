@@ -92,7 +92,7 @@ export default function BlogPostView() {
             <Link
               className="post-meta-item post-meta-item-category"
               to={'/blog/' + category.slug.current}
-              key={post.previousPost.slug.current}
+              key={category.slug.current}
             >
               {category.title}{' '}
             </Link>
