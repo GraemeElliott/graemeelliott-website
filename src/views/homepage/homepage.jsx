@@ -11,9 +11,7 @@ export default function Homepage() {
       <div className="background-image-top"></div>
       <div className="hero">
         <h2 className="name">Graeme Elliott</h2>
-        <p className="job-title">
-          Brand Protection Specialist / Subject Matter Expert
-        </p>
+        <p className="job-title">Product Manager / QA Engineer</p>
         <div className="social-media-icons">
           <li>
             <a
@@ -56,8 +54,8 @@ export default function Homepage() {
           <h1 className="about-me-header">About Me</h1>
 
           <p className="about-me-text">
-            My name is Graeme Elliott and I am an accomplished Specialist and
-            Subject Matter Expert in Brand Protection with more than ten years’
+            My name is Graeme Elliott and I am an accomplished Product Manager
+            and QA Engineer in Brand Protection with more than ten years’
             success in helping companies define and design value driven
             solutions that assist in achieving overall strategic business
             growth. I have strong analytical and communication skills coupled
