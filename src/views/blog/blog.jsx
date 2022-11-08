@@ -1,7 +1,7 @@
 import sanityClient from '../../client';
 import imageUrlBuilder from '@sanity/image-url';
 import './blog.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import Pagination from '../../components/partials/pagination/pagination';
@@ -11,11 +11,11 @@ function urlFor(source) {
   return builder.image(source);
 }
 
+let PageSize = 9;
+
 export default function Blog() {
   const [allPosts, setAllPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(9);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
     sanityClient
@@ -46,9 +46,15 @@ export default function Blog() {
       .catch(console.error);
   }, []);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+  // const indexOfLastPost = currentPage * postsPerPage;
+  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  // const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const currentPostsTest = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return allPosts.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, allPosts]);
 
   return (
     <div className="page-container">
@@ -73,8 +79,8 @@ export default function Blog() {
         </Link>
       </div>
       <div className="blog-posts-grid-container">
-        {currentPosts &&
-          currentPosts.map((post, index) => (
+        {currentPostsTest &&
+          currentPostsTest.map((post, index) => (
             <div
               className={'blog-post-card blog-post-card-' + post.postCardType}
               key={post.slug.current}
@@ -133,9 +139,11 @@ export default function Blog() {
       </div>
       <div>
         <Pagination
-          postsPerPage={postsPerPage}
-          totalPosts={allPosts.length}
-          paginate={paginate}
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={allPosts.length}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
         />
       </div>
     </div>

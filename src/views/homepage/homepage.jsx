@@ -3,14 +3,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faCircleDown } from '@fortawesome/free-solid-svg-icons';
 import img from '../../assets/profile-image.jpg';
-import { Link } from 'react-router-dom';
 
 export default function Homepage() {
   return (
     <div className="home-container">
       <div className="background-image-top"></div>
       <div className="hero">
-        <h2 className="name">Graeme Elliott</h2>
+        <p className="name">Graeme Elliott</p>
         <p className="job-title">Product Manager / QA Engineer</p>
         <div className="social-media-icons">
           <li>
@@ -55,8 +54,8 @@ export default function Homepage() {
 
           <p className="about-me-text">
             My name is Graeme Elliott and I am an accomplished Product Manager
-            and QA Engineer in Brand Protection with more than ten years’
-            success in helping companies define and design value driven
+            and Subject Matter Expert in Brand Protection with more than ten
+            years of success in helping companies define and design value-driven
             solutions that assist in achieving overall strategic business
             growth. I have strong analytical and communication skills coupled
             with the ability to multi-task, work independently, and thrive in a
@@ -97,17 +96,21 @@ export default function Homepage() {
             forefront of every task that I do.
           </p>
           <p>
-            I also have experience in Product Management responsibilities where
-            I have coordinated the gathering of knowledge to problem solve and
-            improve the products I have used throughout my career, develop and
-            execute innovative product strategies that supports awareness,
+            As a Product Manager, I have experience in responsibilities where I
+            have coordinated the gathering of knowledge to problem solve and
+            improve the product. This includes interaction with key stakeholders
+            to understand their challenges and pain points, help create features
+            with user stories, and manage the product roadmap. Throughout my
+            career, I have always had an interest in product management and
+            development, and have always sought opportunities to develop and
+            execute innovative product strategies that support awareness,
             engagement and satisfaction, and facilitate the collaboration of
             multiple departments. This has led to the successful development and
             deployment of new functionalities and features that have benefited
             the teams, clients and the company.
           </p>
           <p>
-            In my spare time I am budding Web Developer, spending my time
+            In my spare time I am web development hobbyist, spending my time
             learning web development technologies such as JavaScript, React and
             Vue.JS through the use of online resources and textbooks. This has
             enabled me to gain an in-depth understanding of how websites are

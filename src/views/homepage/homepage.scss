@@ -12,7 +12,7 @@
 .hero {
   position: absolute;
   left: 0;
-  bottom: 85%;
+  bottom: 86%;
   right: 0;
   margin: auto;
   display: flex;
@@ -26,7 +26,7 @@
     font-size: 3rem;
     font-weight: 700;
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .job-title {
@@ -128,6 +128,7 @@
   .hero {
     .name {
       font-size: 6rem;
+      margin-bottom: 3.5rem;
     }
 
     .job-title {
@@ -151,7 +152,23 @@
 
 @media (min-width: 1500px) {
   .hero {
-    bottom: 80%;
+    bottom: 79%;
+    .name {
+      font-size: 7rem;
+      margin-bottom: 5rem;
+    }
+    .job-title {
+      font-size: 2rem;
+      margin-bottom: 3rem;
+    }
+    .social-media-icons {
+      margin-bottom: 4rem;
+      li {
+        a {
+          font-size: 2rem !important;
+        }
+      }
+    }
   }
   .about-me-container {
     width: 45%;
