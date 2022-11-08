@@ -46,11 +46,7 @@ export default function Blog() {
       .catch(console.error);
   }, []);
 
-  // const indexOfLastPost = currentPage * postsPerPage;
-  // const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  // const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
-
-  const currentPostsTest = useMemo(() => {
+  const currentPosts = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
     return allPosts.slice(firstPageIndex, lastPageIndex);
@@ -79,8 +75,8 @@ export default function Blog() {
         </Link>
       </div>
       <div className="blog-posts-grid-container">
-        {currentPostsTest &&
-          currentPostsTest.map((post, index) => (
+        {currentPosts &&
+          currentPosts.map((post, index) => (
             <div
               className={'blog-post-card blog-post-card-' + post.postCardType}
               key={post.slug.current}

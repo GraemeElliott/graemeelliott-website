@@ -1,7 +1,7 @@
 import sanityClient from '../../../client';
 import imageUrlBuilder from '@sanity/image-url';
 import '../blog.scss';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import Pagination from '../../../components/partials/pagination/pagination';
@@ -11,11 +11,11 @@ function urlFor(source) {
   return builder.image(source);
 }
 
+let PageSize = 9;
+
 export default function BlogByCategory() {
   const [allPosts, setAllPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(6);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   let selectedCategory = window.location.pathname.split('/')[2];
 
@@ -50,9 +50,11 @@ export default function BlogByCategory() {
       .catch(console.error);
   }, [selectedCategory]);
 
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = allPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return allPosts.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, allPosts]);
 
   return (
     <div className="page-container">
@@ -122,9 +124,11 @@ export default function BlogByCategory() {
       </div>
       <div>
         <Pagination
-          postsPerPage={postsPerPage}
-          totalPosts={allPosts.length}
-          paginate={paginate}
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={allPosts.length}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
         />
       </div>
     </div>
