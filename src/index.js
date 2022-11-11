@@ -3,13 +3,26 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import GA4React, { useGA4React } from 'ga-4-react';
+
+const ga4react = new GA4React('G-856S4BKHJ3');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+
+(async (_) => {
+  await ga4react
+    .initialize()
+    .then((res) => console.log('Analytics Success.'))
+    .catch((err) => console.log('Analytics Failure.'))
+    .finally(() => {
+      root.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>,
+        document.getElementById('root')
+      );
+    });
+})();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
