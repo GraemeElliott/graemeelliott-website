@@ -10,7 +10,7 @@ import Footer from './components/partials/footer/footer';
 import BlogByCategory from './views/blog/blog-by-category/blog-by-category';
 import ScrollToTop from './components/partials/scroll-to-top/scroll-to-top';
 
-const TRACKING_ID = 'UA-111472959-1';
+const TRACKING_ID = 'G-856S4BKHJ3';
 
 ReactGA.initialize(TRACKING_ID);
 
