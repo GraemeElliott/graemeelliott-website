@@ -7,9 +7,14 @@ import Header from './components/partials/header/header';
 import Footer from './components/partials/footer/footer';
 import BlogByCategory from './views/blog/blog-by-category/blog-by-category';
 import ScrollToTop from './components/partials/scroll-to-top/scroll-to-top';
+import GA4React, { useGA4React } from 'ga-4-react';
+
+const ga4react = new GA4React('G-856S4BKHJ3');
 
 function App() {
-  return (
+  const ga = useGA4React();
+  return async () => {
+    await ga4react.initialize();
     <BrowserRouter>
       <ScrollToTop />
       <Header />
@@ -22,8 +27,8 @@ function App() {
         </Routes>
         <Footer />
       </div>
-    </BrowserRouter>
-  );
+    </BrowserRouter>;
+  };
 }
 
 export default App;
