@@ -5,6 +5,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import Pagination from '../../../components/partials/pagination/pagination';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -58,6 +59,16 @@ export default function BlogByCategory() {
 
   return (
     <div className="page-container">
+      <HelmetProvider>
+        <Helmet>
+          <title>
+            {selectedCategory
+              .replace(/\b\w/g, (c) => c.toUpperCase())
+              .replace(/-/g, ' ')}{' '}
+            | Graeme Elliott - Product Manager / QA Engineer
+          </title>
+        </Helmet>
+      </HelmetProvider>
       <div className="blog-header">
         <p className="blog-header-title">
           {selectedCategory.replace(/-/g, ' ')}

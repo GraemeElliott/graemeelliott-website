@@ -5,6 +5,7 @@ import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import Pagination from '../../components/partials/pagination/pagination';
+import SearchBar from '../../components/partials/search-bar/search-bar';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -39,10 +40,14 @@ export default function Blog() {
                 categories [] -> {
                   title,
                   slug
-                }
+                },
+                "category": categories[]->title,
             }`
       )
       .then((data) => setAllPosts(data))
+      .then(
+        (document.title = `Blog | Graeme Elliott - Product Manager / QA Engineer`)
+      )
       .catch(console.error);
   }, []);
 
@@ -57,6 +62,9 @@ export default function Blog() {
       <div className="blog-header">
         <p className="blog-header-title">Blog</p>
       </div>
+      {/* <div>
+        <SearchBar placeholder="Search for a post..." data={allPosts} />
+      </div> */}
       <div className="category-tags">
         <Link to={'/blog/web-development'} key={'web-development'}>
           Web Development

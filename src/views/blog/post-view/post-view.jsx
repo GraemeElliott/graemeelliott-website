@@ -10,6 +10,7 @@ import Moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
@@ -61,7 +62,8 @@ export default function BlogPostView() {
             categories [] -> {
               title,
               slug
-            }
+            },
+            "categoryTitles": categories[]->title,
           },
           "nextPost": *[_type == "post" && ^.publishedAt < publishedAt]|order(publishedAt asc)[0]{
             title,
@@ -81,6 +83,14 @@ export default function BlogPostView() {
 
   return (
     <div className="blog-post-view-container">
+      <HelmetProvider>
+        <Helmet>
+          <title>
+            {post.currentPost.title} | Graeme Elliott - Product Manager / QA
+            Engineer
+          </title>
+        </Helmet>
+      </HelmetProvider>
       <div className="blog-post-container">
         <h1 className="post-title">{post.currentPost.title}</h1>
         <ul className="post-meta">
