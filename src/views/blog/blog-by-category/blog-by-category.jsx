@@ -71,7 +71,9 @@ export default function BlogByCategory() {
       </HelmetProvider>
       <div className="blog-header">
         <p className="blog-header-title">
-          {selectedCategory.replace(/-/g, ' ')}
+          {selectedCategory
+            .replace(/\b\w/g, (c) => c.toUpperCase())
+            .replace(/-/g, ' ')}{' '}
         </p>
       </div>
       <div className="blog-posts-grid-container">
