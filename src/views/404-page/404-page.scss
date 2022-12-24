@@ -1,15 +1,12 @@
-h2,
-h3,
-h4,
-p {
+.error-page-subtitle .error-page-text {
   margin-bottom: 2rem;
 }
 
-.page-title {
+.error-page-title {
   font-size: 10rem !important;
 }
 
-.text-container {
+.error-page-text-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,7 +50,7 @@ p {
     align-content: center;
   }
 
-  .text-container {
+  .error-page-text-container {
     width: 70%;
   }
   .error-image {
