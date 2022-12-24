@@ -15,7 +15,11 @@ export default function NotFound404() {
           <Link to={'..'}>Go back</Link>
         </button>
       </div>
-      <img src={require('../../assets/image-404.jpg')} alt="car" />
+      <img
+        className="error-image"
+        src={require('../../assets/image-404.jpg')}
+        alt="car"
+      />
     </div>
   );
 }
