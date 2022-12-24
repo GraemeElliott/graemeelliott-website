@@ -75,12 +75,6 @@ export default function Blog() {
         <Link to={'/blog/data-analysis'} key={'data-analysis'}>
           Data Analysis
         </Link>
-        <Link to={'/blog/music'} key={'music'}>
-          Music
-        </Link>
-        <Link to={'/blog/personal'} key={'personal'}>
-          Personal
-        </Link>
       </div>
       <div className="blog-posts-grid-container">
         {currentPosts &&

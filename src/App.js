@@ -7,6 +7,7 @@ import Header from './components/partials/header/header';
 import Footer from './components/partials/footer/footer';
 import BlogByCategory from './views/blog/blog-by-category/blog-by-category';
 import ScrollToTop from './components/partials/scroll-to-top/scroll-to-top';
+import NotFound404 from './views/404-page/404-page';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:category" element={<BlogByCategory />} />
           <Route path="/blog/post/:slug" element={<BlogPostView />} />
+          <Route path="*" element={<NotFound404 />} />
         </Routes>
         <Footer />
       </div>
