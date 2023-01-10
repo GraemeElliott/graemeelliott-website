@@ -1,6 +1,7 @@
 import './App.css';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Homepage from './views/homepage/homepage.jsx';
+import Portfolio from './views/portfolio/portfolio';
 import Blog from './views/blog/blog';
 import BlogPostView from './views/blog/post-view/post-view';
 import Header from './components/partials/header/header';
@@ -17,6 +18,7 @@ function App() {
       <div className="site-container">
         <Routes>
           <Route path="/" element={<Homepage />} />
+          <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:category" element={<BlogByCategory />} />
           <Route path="/blog/post/:slug" element={<BlogPostView />} />

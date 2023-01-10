@@ -11,8 +11,8 @@ export default function NotFound404() {
           The page you are looking for does not exist. How you got here is a
           mystery. But you can click the button below to go back.
         </p>
-        <button className="go-back-button">
-          <Link to={'..'}>Go back</Link>
+        <button className="go-home-button">
+          <Link to={'..'}>Home</Link>
         </button>
       </div>
       <img
