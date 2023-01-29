@@ -10,6 +10,8 @@ const ga4react = new GA4React('G-856S4BKHJ3');
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+// see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+
 (async (_) => {
   await ga4react
     .initialize()

@@ -3,35 +3,18 @@ import './post-view.scss';
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import imageUrlBuilder from '@sanity/image-url';
-import BlockContent from '@sanity/block-content-to-react';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { vs2015 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Moment from 'moment';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { PortableText } from '@portabletext/react';
+import { RichTextComponents } from '../../../components/RichTextComponents';
 
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
 }
-
-const serializers = {
-  types: {
-    code: (props) => (
-      <pre data-language={props.node.language}>
-        <SyntaxHighlighter
-          className={`language-${props.node.language} line-numbers`}
-          style={vs2015}
-          showLineNumbers={true}
-        >
-          {props.node.code}
-        </SyntaxHighlighter>
-      </pre>
-    ),
-  },
-};
 
 export default function BlogPostView() {
   const [post, setPost] = useState(null);
@@ -109,10 +92,10 @@ export default function BlogPostView() {
           ))}
         </ul>
         <div className="post-content">
-          <BlockContent
-            blocks={post.currentPost.body}
+          <PortableText
+            value={post.currentPost.body}
             projectId={sanityClient.clientConfig.projectId}
-            serializers={serializers}
+            components={RichTextComponents}
             dataset={sanityClient.clientConfig.dataset}
           />
         </div>
@@ -153,11 +136,7 @@ export default function BlogPostView() {
               {post.currentPost.authorTitle}
             </div>
             <div className="post-author-block-bio">
-              <BlockContent
-                blocks={post.currentPost.authorBio}
-                projectId={sanityClient.clientConfig.projectId}
-                dataset={sanityClient.clientConfig.dataset}
-              />
+              <PortableText value={post.currentPost.authorBio} />
             </div>
           </div>
         </div>

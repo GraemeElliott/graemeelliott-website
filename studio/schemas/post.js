@@ -1,14 +1,16 @@
-export default {
+import { defineField, defineType } from 'sanity';
+
+export default defineType({
   name: 'post',
   title: 'Post',
   type: 'document',
   fields: [
-    {
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
-    },
-    {
+    }),
+    defineField({
       name: 'titleColour',
       title: 'Title colour',
       type: 'string',
@@ -18,8 +20,8 @@ export default {
           { title: 'White', value: 'white' },
         ],
       },
-    },
-    {
+    }),
+    defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
@@ -27,8 +29,8 @@ export default {
         source: 'title',
         maxLength: 96,
       },
-    },
-    {
+    }),
+    defineField({
       name: 'postCardType',
       title: 'Post Card Type',
       type: 'string',
@@ -38,51 +40,47 @@ export default {
           { title: 'Text', value: 'text' },
         ],
       },
-    },
-    {
+    }),
+    defineField({
       name: 'author',
       title: 'Author',
       type: 'reference',
       to: { type: 'author' },
-    },
-    {
+    }),
+    defineField({
       name: 'mainImage',
       title: 'Main image',
       type: 'image',
       options: {
         hotspot: true,
       },
-    },
-    {
+    }),
+    defineField({
       name: 'categories',
       title: 'Categories',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'category' } }],
-    },
-    {
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Published at',
       type: 'datetime',
-    },
-    {
+    }),
+    defineField({
       name: 'updatedAt',
       title: 'Updated at',
       type: 'datetime',
-    },
-    {
+    }),
+    defineField({
       name: 'body',
       title: 'Body',
       type: 'blockContent',
-    },
-    {
+    }),
+    defineField({
       name: 'description',
       title: 'Post description (max. 200 characters)',
       type: 'string',
-      options: {
-        source: 'body',
-        maxLength: 200,
-      },
-    },
+    }),
   ],
 
   preview: {
@@ -93,9 +91,7 @@ export default {
     },
     prepare(selection) {
       const { author } = selection;
-      return Object.assign({}, selection, {
-        subtitle: author && `by ${author}`,
-      });
+      return { ...selection, subtitle: author && `by ${author}` };
     },
   },
-};
+});
