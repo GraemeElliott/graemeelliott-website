@@ -1,0 +1,12 @@
+@import '_base';
+@import '_layout';
+@import '_components';
+
+@import './pages//homepage';
+@import './blog/blog-cards.scss';
+@import './pages/blog';
+@import './blog//pagination.scss';
+@import './blog/post.scss';
+@import './portfolio/project-cards.scss';
+@import './pages/portfolio';
+@import './portfolio/project.scss';

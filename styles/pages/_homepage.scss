@@ -1,0 +1,119 @@
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage-hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  .hero-details {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .hero-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+  }
+}
+
+.profile-image {
+  height: auto;
+  width: 46vh;
+}
+
+.social-media-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  li {
+    list-style-type: none;
+    a {
+      list-style-type: none;
+      font-size: 1.5rem !important;
+      color: inherit;
+    }
+  }
+
+  .fa-github {
+    margin-right: 0.5rem;
+  }
+
+  .fa-linkedin {
+    margin-left: 0.5rem;
+  }
+}
+
+.about-me-container {
+  width: 100%;
+  margin-left: 1rem;
+  margin-right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  .about-me-header {
+    border-bottom: 2px solid;
+    border-color: inherit;
+  }
+}
+
+.latest-blog-posts-container {
+  width: 100%;
+  margin-left: 1rem;
+  margin-right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.latest-blog-posts-header {
+  border-bottom: 2px solid;
+  border-color: inherit;
+}
+
+@media screen and (min-width: 850px) {
+  .homepage-hero {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+
+    .hero-details {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 40vh;
+
+      .hero-name {
+        font-size: 32px;
+      }
+
+      .hero-title {
+        font-size: 26px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1250px) {
+  .homepage-hero {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .profile-image {
+    width: 50vh;
+  }
+
+  .hero-details {
+    width: 50vh;
+  }
+}

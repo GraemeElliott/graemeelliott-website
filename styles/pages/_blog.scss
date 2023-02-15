@@ -1,0 +1,30 @@
+.blog-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+
+  .blog-header-title {
+    text-transform: capitalize;
+    font-weight: 700;
+  }
+}
+
+.category-tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    font-weight: 700;
+    margin-right: 1rem;
+    line-height: 3rem;
+  }
+}
