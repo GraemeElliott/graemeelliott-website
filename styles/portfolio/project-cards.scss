@@ -57,30 +57,36 @@
 @media (min-width: 800px) {
   .project-cards-container {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .project-card {
-    height: 18rem;
-    overflow: hidden;
+    .project-card {
+      height: 18rem;
+      overflow: hidden;
+    }
   }
 }
 
 @media (min-width: 1024px) {
-  .project-card {
-    height: 23rem;
-    overflow: hidden;
+  .project-cards-container {
+    .project-card {
+      height: 23rem;
+      overflow: hidden;
+    }
   }
 }
 
 @media (min-width: 1200px) {
-  .project-card {
-    height: 21rem;
-    overflow: hidden;
+  .project-cards-container {
+    .project-card {
+      height: 21rem;
+      overflow: hidden;
+    }
   }
 }
 
 @media (min-width: 2000px) {
-  .project-card {
-    height: 31rem;
-    overflow: hidden;
+  .project-cards-container {
+    .project-card {
+      height: 32rem;
+      overflow: hidden;
+    }
   }
 }
