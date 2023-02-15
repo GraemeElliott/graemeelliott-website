@@ -10,9 +10,9 @@
     flex: 0 0 auto;
     margin: 20px;
     position: relative;
-    z-index: 1;
-    height: 32rem;
+    height: 22rem;
     overflow: hidden;
+    z-index: 1;
     &:hover .overlay {
       opacity: 1;
     }
@@ -57,5 +57,30 @@
 @media (min-width: 800px) {
   .project-cards-container {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .project-card {
+    height: 18rem;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 1024px) {
+  .project-card {
+    height: 23rem;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 1200px) {
+  .project-card {
+    height: 21rem;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 2000px) {
+  .project-card {
+    height: 31rem;
+    overflow: hidden;
   }
 }
