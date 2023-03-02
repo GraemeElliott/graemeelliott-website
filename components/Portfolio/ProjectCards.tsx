@@ -16,7 +16,7 @@ export default function ProjectCards({ projects }: Props) {
     <div className="project-cards-container">
       {projects &&
         projects.map((project) => (
-          <Link href={`/portfolio/${project.slug}`}>
+          <Link href={`/portfolio/${project.slug}`} key={project.slug}>
             <div className="project-card" key={project.slug}>
               <img
                 className="project-card-image"

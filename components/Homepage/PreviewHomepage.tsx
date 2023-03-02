@@ -5,13 +5,13 @@ import {
   type Project,
   type Settings,
   indexQuery,
-  projectQuery,
+  indexProjectQuery,
   settingsQuery,
 } from 'lib/sanity.queries';
 
 export default function PreviewHomepage({ token }: { token: null | string }) {
   const posts: Post[] = usePreview(token, indexQuery) || [];
-  const projects: Project[] = usePreview(token, projectQuery) || [];
+  const projects: Project[] = usePreview(token, indexProjectQuery) || [];
   const settings: Settings = usePreview(token, settingsQuery) || {};
 
   return (

@@ -15,6 +15,7 @@ import { settingsPlugin, settingsStructure } from './plugins/settings';
 import { defineConfig } from 'sanity';
 import { deskTool } from 'sanity/desk';
 import postType from './schemas/post';
+import projectType from './schemas/project';
 import settingsType from './schemas/settings/index';
 import { schemaTypes } from './schemas/index';
 import { codeInput } from '@sanity/code-input';
@@ -43,7 +44,7 @@ export default defineConfig({
     productionUrl({
       apiVersion,
       previewSecretId,
-      types: [postType.name, settingsType.name],
+      types: [postType.name, projectType.name, settingsType.name],
     }),
     // Add an image asset source for Unsplash
     // Vision lets you query your content with GROQ in the studio

@@ -1,4 +1,4 @@
-import{s as _,bG as j,j as O,aO as g,di as w,f as a,bs as B,dh as L,ab as T,bU as S,bt as A,aP as D,i as G,n as W}from"./desk-0312ba5d-a4fd6f78.js";import{P as z}from"./PaneItem-1352c9b8-0128db97.js";import{useDeskTool as C}from"./index-74d44846-2af806bf.js";import"./json-inspector-76741ae4.js";var r;function H(n,t){return t||(t=n.slice(0)),Object.freeze(Object.defineProperties(n,{raw:{value:Object.freeze(t)}}))}const U=_.hr(r||(r=H([`
+import{s as _,bG as j,j as O,aO as g,di as w,f as a,bs as B,dh as L,ab as T,bU as S,bt as A,aP as D,i as G,n as W}from"./desk-257f76bb-0cc5ff9a.js";import{P as z}from"./PaneItem-baaea00f-e41d79bd.js";import{useDeskTool as C}from"./index-9e58f0f1-bb3fc752.js";import"./json-inspector-1df876f2.js";var r;function H(n,t){return t||(t=n.slice(0)),Object.freeze(Object.defineProperties(n,{raw:{value:Object.freeze(t)}}))}const U=_.hr(r||(r=H([`
   background-color: var(--card-border-color);
   height: 1px;
   margin: 0;

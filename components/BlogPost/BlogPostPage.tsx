@@ -30,7 +30,7 @@ export default function PostPage(props: PostPageProps) {
         <title>
           {post.title} | Graeme Elliott - Product Manager / QA Engineer
         </title>
-        <PostPageHead settings={settings} post={post} />
+        <PostPageHead settings={settings} post={post} key={post.slug} />
       </Head>
       <div className="post-container">
         <BlogPostHeader title={title} level={2} />
