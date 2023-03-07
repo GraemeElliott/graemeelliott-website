@@ -12,7 +12,7 @@ import { RichTextComponents } from '../RichTextComponents';
 
 export default function PostBody({ content }) {
   return (
-    <div>
+    <div className="post-body">
       <PortableText value={content} components={RichTextComponents} />
     </div>
   );

@@ -1,10 +1,4 @@
-import { groq } from 'next-sanity';
-import { client } from 'lib/sanity.client';
-import { useState, useEffect, useMemo } from 'react';
-// import Pagination from '../../../components/pagination/pagination';
 import PortfolioPage from 'components/Portfolio/PortfolioPage';
-import Pagination from 'components/Blog/Pagination/Pagination';
-
 import { PreviewSuspense } from '@sanity/preview-kit';
 import { getAllProjects, getSettings } from 'lib/sanity.client';
 import { Project, Settings } from 'lib/sanity.queries';

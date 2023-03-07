@@ -1,4 +1,3 @@
-import BlogMeta from 'components/BlogMeta';
 import { urlForImage } from 'lib/sanity.image';
 import { Post, Settings } from 'lib/sanity.queries';
 
@@ -12,7 +11,6 @@ export default function PostPageHead({ settings, post }: PostPageHeadProps) {
   return (
     <>
       <title>{post.title ? `${post.title} | ${title}` : title}</title>
-      <BlogMeta />
       {post.mainImage?.asset?._ref && (
         <meta
           property="og:image"

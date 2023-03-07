@@ -1,4 +1,3 @@
-import ProjectHeader from './ProjectHeader';
 import ProjectBody from './ProjectBody';
 import ProjectDetailsHeader from './ProjectDetailsHeader';
 import ProjectPageHead from './ProjectPageHead';
@@ -35,7 +34,6 @@ export default function ProjectPage(props: ProjectPageProps) {
         <ProjectPageHead settings={settings} project={project} />
       </Head>
 
-      <ProjectHeader title={title} level={2} />
       {preview && !project ? (
         <ProjectTitle>Loading…</ProjectTitle>
       ) : (

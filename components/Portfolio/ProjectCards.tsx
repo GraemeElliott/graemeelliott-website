@@ -1,5 +1,3 @@
-import Avatar from 'components/AuthorAvatar';
-import CoverImage from 'components/CoverImage';
 import type { Project, Settings } from 'lib/sanity.queries';
 import Link from 'next/link';
 import { urlForImage } from 'lib/sanity.image';

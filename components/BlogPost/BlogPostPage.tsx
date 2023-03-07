@@ -1,10 +1,10 @@
-import BlogPostHeader from 'components/BlogPost/BlogPostHeader';
 import PostBody from 'components/BlogPost/BlogPostBody';
 import PostHeader from 'components/BlogPost/PostHeader';
 import PostPageHead from 'components/BlogPost/PostPageHead';
 import type { Post, Settings } from 'lib/sanity.queries';
 import Head from 'next/head';
 import { notFound } from 'next/navigation';
+import AuthorAvatar from './AuthorAvatar';
 
 export interface PostPageProps {
   preview?: boolean;
@@ -33,19 +33,25 @@ export default function PostPage(props: PostPageProps) {
         <PostPageHead settings={settings} post={post} key={post.slug} />
       </Head>
       <div className="post-container">
-        <BlogPostHeader title={title} level={2} />
-        <>
-          <article>
-            <PostHeader
-              title={post.title}
-              mainImage={post.mainImage}
-              publishedAt={post.publishedAt}
-              author={post.author}
-              categories={categories}
+        <article>
+          <PostHeader
+            title={post.title}
+            publishedAt={post.publishedAt}
+            author={post.author}
+            categories={categories}
+          />
+          <PostBody content={post.body} />
+          {post.author && (
+            <AuthorAvatar
+              name={post.author.name}
+              image={post.author.image}
+              title={post.author.title}
+              bio={post.author.bio}
+              githubUrl={post.author.githubUrl}
+              linkedInUrl={post.author.linkedInUrl}
             />
-            <PostBody content={post.body} />
-          </article>
-        </>
+          )}
+        </article>
       </div>
     </>
   );

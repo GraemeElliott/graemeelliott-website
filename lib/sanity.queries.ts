@@ -9,7 +9,7 @@ const postFields = groq`
   description,
   mainImage,
   "slug": slug.current,
-  "author": author->{name, image, bio, githubUrl, linkedInUrl },
+  "author": author->{name, title, image, bio, githubUrl, linkedInUrl },
   "categories": categories[]->{title, slug}
 `;
 
@@ -23,7 +23,7 @@ const postFieldsWithBody = groq`
   body,
   mainImage,
   "slug": slug.current,
-  "author": author->{name, image, bio, githubUrl, linkedInUrl },
+  "author": author->{name, title, image, bio, githubUrl, linkedInUrl },
   "categories": categories[]->{title, slug}
 `;
 
@@ -41,7 +41,7 @@ const projectFields = groq`
   body,
   url,
   "slug": slug.current,
-  "author": author->{name, image, bio, githubUrl, linkedInUrl },
+  "author": author->{name, title, image, bio, githubUrl, linkedInUrl },
   "categories": categories[]->title
 `;
 
@@ -100,6 +100,7 @@ export const projectBySlugQuery = groq`
 
 export interface Author {
   name?: string;
+  title?: string;
   image?: any;
   bio?: any;
   slug?: string;

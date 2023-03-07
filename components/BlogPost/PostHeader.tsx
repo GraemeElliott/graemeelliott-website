@@ -1,4 +1,3 @@
-import Avatar from 'components/AuthorAvatar';
 import type { Post } from 'lib/sanity.queries';
 import Moment from 'moment';
 import Link from 'next/link';

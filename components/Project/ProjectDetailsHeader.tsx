@@ -1,5 +1,3 @@
-import Avatar from 'components/AuthorAvatar';
-import CoverImage from 'components/CoverImage';
 import type { Project } from 'lib/sanity.queries';
 import ProjectBody from './ProjectBody';
 

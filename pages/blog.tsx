@@ -1,7 +1,6 @@
 import { groq } from 'next-sanity';
 import { client } from 'lib/sanity.client';
 import { useState, useEffect, useMemo } from 'react';
-// import Pagination from '../../../components/pagination/pagination';
 import BlogPage from 'components/Blog/BlogPage';
 import Pagination from 'components/Blog/Pagination/Pagination';
 import { PreviewSuspense } from '@sanity/preview-kit';
