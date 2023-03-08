@@ -81,12 +81,18 @@
     grid-template-rows: 1fr;
     grid-column-gap: 10px;
     grid-row-gap: 0px;
+    display: -webkit-grid;
+    -webkit-grid-template-columns: repeat(1, 1fr);
+    -webkit-grid-template-rows: 1fr;
+    -webkit-grid-column-gap: 10px;
+    -webkit-grid-row-gap: 0px;
     .hero-details {
       text-align: center;
       display: flex;
       flex-direction: column;
       justify-content: center;
       width: auto;
+      margin-bottom: 2rem;
       .hero-name {
         font-size: 32px;
       }
