@@ -66,12 +66,12 @@ export default function Homepage(props: IndexPageProps) {
         <title>Graeme Elliott - Product Manager / QA Engineer</title>
       </Head>
       <div className="homepage-container">
-        <section className="homepage-hero homepage-section">
+        <section className="homepage-hero">
           <div className="hero-details">
-            <h1 className="hero-name">Graeme Elliott</h1>
-            <h2 className="hero-title">
+            <p className="hero-name">Graeme Elliott</p>
+            <p className="hero-title">
               Product Manager / QA Engineer / Subject Matter Expert
-            </h2>
+            </p>
             <div className="social-media-icons">
               <li>
                 <a
@@ -103,20 +103,16 @@ export default function Homepage(props: IndexPageProps) {
             <Image src={img} alt="Graeme Elliott" className="profile-image" />
           </div>
         </section>
-        <section className="homepage-projects-container homepage-section">
+        <AboutMe />
+        <section
+          className="homepage-projects-container homepage-section"
+          id="homepage-projects-container"
+        >
           <h1 className="homepage-projects-header homepage-header">
             {' '}
             Projects{' '}
           </h1>
           <ProjectCards projects={projects} settings={settings} />
-        </section>
-        <AboutMe />
-        <section className="latest-blog-posts-container homepage-section">
-          <h1 className="latest-blog-posts-header homepage-header">
-            {' '}
-            Latest Blog Posts{' '}
-          </h1>
-          <BlogCards posts={currentPosts} settings={undefined} />
         </section>
       </div>
     </>
