@@ -71,12 +71,3 @@ export const getServerSideProps: GetServerSideProps<
     },
   };
 };
-
-export const getStaticPaths = async () => {
-  const slugs = await getAllPostsSlugs();
-
-  return {
-    paths: slugs?.map(({ slug }) => `/blog/post/${slug}`) || [],
-    fallback: false,
-  };
-};

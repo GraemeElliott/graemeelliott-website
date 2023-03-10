@@ -151,19 +151,3 @@ export const getServerSideProps: GetServerSideProps<
     },
   };
 };
-
-export const getStaticPaths = async () => {
-  // Define the GROQ query to retrieve all categories
-  const query = groq`*[_type == "category"] { slug }`;
-
-  const categories = await client.fetch(query);
-
-  // Generate the paths for each category
-  const paths =
-    categories && categories.map((({ slug }) => `/blog/${slug.current}`) || []);
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
