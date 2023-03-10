@@ -2,7 +2,7 @@ import { PreviewSuspense } from '@sanity/preview-kit';
 import Homepage from '../components/Homepage/Homepage';
 import { getAllPosts, getAllProjects, getSettings } from 'lib/sanity.client';
 import { Post, Project, Settings } from 'lib/sanity.queries';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { lazy } from 'react';
 
 export const revalidate = 30; //revalidate this page every 30 seconds
@@ -59,12 +59,12 @@ export default function Index(props: PageProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   PageProps,
   Query,
   PreviewData
 > = async (ctx) => {
-  const { preview = false, previewData = {} } = ctx;
+  const { preview = false, previewData = {}, params = {} } = ctx;
 
   const [settings, posts = [], projects = []] = await Promise.all([
     getSettings(),

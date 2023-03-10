@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import ProjectCards from 'components/Portfolio/ProjectCards';
 import Head from 'next/head';
+import WebsiteMeta from 'components/Meta';
 export interface IndexPageProps {
   preview?: boolean;
   loading?: boolean;
@@ -65,6 +66,7 @@ export default function Homepage(props: IndexPageProps) {
       <Head>
         <title>Graeme Elliott - Product Manager / QA Engineer</title>
       </Head>
+      <WebsiteMeta />
       <div className="homepage-container">
         <section className="homepage-hero">
           <div className="hero-details">

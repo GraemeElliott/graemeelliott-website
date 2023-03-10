@@ -6,7 +6,7 @@ import Pagination from 'components/Blog/Pagination/Pagination';
 import { PreviewSuspense } from '@sanity/preview-kit';
 import { getAllPosts, getSettings } from 'lib/sanity.client';
 import { Post, Settings } from 'lib/sanity.queries';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { lazy } from 'react';
 
 export const revalidate = 30; //revalidate this page every 30 seconds
@@ -49,12 +49,12 @@ const query = groq`*[_type == "post"] | order(publishedAt desc) {
     "category": categories[]->title,
   }`;
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   PageProps,
   Query,
   PreviewData
 > = async (ctx) => {
-  const { preview = false, previewData = {} } = ctx;
+  const { preview = false, previewData = {}, params = {} } = ctx;
 
   const [settings, posts = []] = await Promise.all([
     getSettings(),

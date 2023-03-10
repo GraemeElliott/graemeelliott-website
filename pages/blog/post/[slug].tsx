@@ -2,7 +2,7 @@ import { PreviewSuspense } from '@sanity/preview-kit';
 import BlogPostPage from 'components/BlogPost/BlogPostPage';
 import { getAllPostsSlugs, getPost, getSettings } from 'lib/sanity.client';
 import { Post, Settings } from 'lib/sanity.queries';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { lazy } from 'react';
 
 const PreviewBlogPost = lazy(
@@ -42,7 +42,7 @@ export default function BlogSlugRoute(props: PageProps) {
   return <BlogPostPage post={post} settings={settings} />;
 }
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   PageProps,
   Query,
   PreviewData

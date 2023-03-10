@@ -7,7 +7,7 @@ import { PreviewSuspense } from '@sanity/preview-kit';
 import { lazy } from 'react';
 import BlogCards from 'components/Blog/BlogCards';
 import Pagination from 'components/Blog/Pagination/Pagination';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 
 import { getAllPostsByCategory, getSettings } from 'lib/sanity.client';
 
@@ -120,7 +120,7 @@ export default function BlogByCategoryPage(props: PageProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   PageProps,
   Query,
   PreviewData

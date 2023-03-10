@@ -2,7 +2,7 @@ import { PreviewSuspense } from '@sanity/preview-kit';
 import ProjectPage from 'components/Project/ProjectPage';
 import { getAllProjectSlugs, getProject, getSettings } from 'lib/sanity.client';
 import { Project, Settings } from 'lib/sanity.queries';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { lazy } from 'react';
 
 export const revalidate = 30; //revalidate this page every 30 seconds
@@ -48,7 +48,7 @@ export default function BlogSlugRoute(props: PageProps) {
   return <ProjectPage project={project} settings={settings} />;
 }
 
-export const getStaticProps: GetStaticProps<
+export const getServerSideProps: GetServerSideProps<
   PageProps,
   Query,
   PreviewData

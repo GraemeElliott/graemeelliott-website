@@ -1,0 +1,1 @@
+import{DocumentPaneProvider as m,DocumentPane as a}from"./index-9e58f0f1-21063aff.js";import"./desk-257f76bb-9acdf4cb.js";import"./json-inspector-444ea275.js";export{m as DocumentPaneProvider,a as default};
