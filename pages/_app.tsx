@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app';
+import Head from 'next/head';
 import '../styles/main.scss';
 import { useState, useEffect } from 'react';
 import Container from 'components/Container';
@@ -19,6 +20,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <div className={theme}>
+      <Head>
+        <link rel="shortcut icon" href="../../public/favicon.ico" />
+      </Head>
       <Navbar theme={theme} setTheme={setTheme} />
       <Container>
         <Component {...pageProps} theme={theme} />
