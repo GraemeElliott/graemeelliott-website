@@ -3,7 +3,9 @@ import { Head, Html, Main, NextScript } from 'next/document';
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        <link rel="shortcut icon" href="../../public/favicon.ico" />
+      </Head>
       <Main />
       <NextScript />
       {/* Global Site Tag (gtag.js) - Google Analytics */}

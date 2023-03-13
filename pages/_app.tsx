@@ -20,16 +20,15 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   return (
-    <div className={theme}>
-      <Head>
-        <link rel="shortcut icon" href="../../public/favicon.ico" />
-      </Head>
-      <GoogleAnalytics />
-      <Navbar theme={theme} setTheme={setTheme} />
-      <Container>
-        <Component {...pageProps} theme={theme} />
-      </Container>
-      <Footer />
-    </div>
+    <>
+      <div className={theme}>
+        <Navbar theme={theme} setTheme={setTheme} />
+        <Container>
+          <GoogleAnalytics />
+          <Component {...pageProps} theme={theme} />
+        </Container>
+        <Footer />
+      </div>
+    </>
   );
 }
