@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@sanity/eslint-config-studio": "^2.0.1",
+    "@types/gtag.js": "^0.0.12",
     "@types/jest": "^29.4.0",
     "@types/node": "^18.13.0",
     "@types/react": "^18.0.28",

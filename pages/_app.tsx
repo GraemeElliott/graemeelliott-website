@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Container from 'components/Container';
 import Navbar from 'components/Partials/Navbar';
 import Footer from 'components/Partials/Footer';
+import GoogleAnalytics from 'components/GoogleAnalytics';
 
 export default function App({ Component, pageProps }: AppProps) {
   const [theme, setTheme] = useState(null);
@@ -23,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <link rel="shortcut icon" href="../../public/favicon.ico" />
       </Head>
+      <GoogleAnalytics />
       <Navbar theme={theme} setTheme={setTheme} />
       <Container>
         <Component {...pageProps} theme={theme} />
