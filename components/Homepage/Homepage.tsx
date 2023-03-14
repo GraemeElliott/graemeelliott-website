@@ -102,12 +102,7 @@ export default function Homepage(props: IndexPageProps) {
             </div>
           </div>
           <div className="homepage-photo-container">
-            <Image
-              src={img}
-              alt="Graeme Elliott"
-              className="profile-image"
-              priority
-            />
+            <Image src={img} alt="Graeme Elliott" className="profile-image" />
           </div>
         </section>
         <AboutMe />
