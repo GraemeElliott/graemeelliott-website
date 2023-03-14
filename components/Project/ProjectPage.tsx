@@ -31,7 +31,11 @@ export default function ProjectPage(props: ProjectPageProps) {
         <title>
           {project.title} | Graeme Elliott - Product Manager / QA Engineer
         </title>
-        <ProjectPageHead settings={settings} project={project} />
+        <ProjectPageHead
+          settings={settings}
+          project={project}
+          key={project.slug}
+        />
       </Head>
 
       {preview && !project ? (
