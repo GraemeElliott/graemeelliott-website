@@ -8,6 +8,7 @@ import { lazy } from 'react';
 import BlogCards from 'components/Blog/BlogCards';
 import Pagination from 'components/Blog/Pagination/Pagination';
 import { GetServerSideProps } from 'next';
+import Head from 'next/head';
 
 import { getAllPostsByCategory, getSettings } from 'lib/sanity.client';
 
@@ -97,6 +98,9 @@ export default function BlogByCategoryPage(props: PageProps) {
 
   return (
     <>
+      <Head>
+        <title>Blog | Graeme Elliott - Product Manager / QA Engineer</title>
+      </Head>
       <div className="blog-page-container">
         <div className="blog-header">
           <h1 className="blog-header-title">
