@@ -1,3 +1,9 @@
+.project-container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
 .project-page-title {
   font-size: 48px;
   font-weight: 700;
@@ -11,10 +17,6 @@
   font-weight: 500;
   margin-bottom: 0.75rem;
   padding: 0;
-}
-
-.project-page-header {
-  margin-bottom: 2rem;
 }
 
 .project-main-image {
@@ -38,7 +40,7 @@ div.project-body > div > p:last-of-type {
 }
 
 .project-page-image {
-  width: 75%;
+  width: 100%;
   height: auto;
   margin-bottom: 2rem;
 }
@@ -49,17 +51,11 @@ div.project-body > div > p:last-of-type {
 }
 
 @media screen and (min-width: 1200px) {
-  .project-details-section {
-    flex-direction: row;
-    margin-bottom: 2rem;
-  }
-  .project-main-image {
-    margin-top: 1rem;
+  .project-container {
+    width: 80%;
   }
 
-  .project-body {
-    flex-shrink: 1.25;
-    margin: 0 auto;
-    margin-left: 2rem;
+  .project-page-image {
+    width: 80%;
   }
 }

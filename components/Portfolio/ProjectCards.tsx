@@ -21,14 +21,14 @@ export default function ProjectCards({ projects }: Props) {
                 alt=""
                 src={urlForImage(project.mainImage).url()}
               />
-              <div className="overlay">
+              <span className="overlay">
                 <div className="project-card-details">
                   <div className="project-card-title">{project.title}</div>
                   <div className="project-card-category">
                     {project.categories}
                   </div>
                 </div>
-              </div>
+              </span>
             </div>
           </Link>
         ))}

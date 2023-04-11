@@ -41,7 +41,7 @@ export default function ProjectPage(props: ProjectPageProps) {
       {preview && !project ? (
         <ProjectTitle>Loading…</ProjectTitle>
       ) : (
-        <>
+        <div className="project-container">
           <ProjectDetailsHeader
             title={project.title}
             mainImage={project.mainImage}
@@ -50,28 +50,23 @@ export default function ProjectPage(props: ProjectPageProps) {
             categories={project.categories}
             build={project.build}
           />
-
-          <div className="project-details-section">
-            <div className="project-main-image-container">
-              <img
-                className="project-main-image"
-                alt=""
-                src={urlForImage(project.mainImage).url()}
-              />
-            </div>
-
-            <div className="project-body">
-              <ProjectBody content={project.body} />
-              <Link
-                href={`${project.url}`}
-                className="project-url"
-                target="_blank"
-              >
-                {project.url}
-              </Link>
-            </div>
+          <div className="project-body">
+            <ProjectBody content={project.body} />
+            <Link
+              href={`${project.url}`}
+              className="project-url"
+              target="_blank"
+            >
+              {project.url}
+            </Link>
           </div>
+
           <div className="project-images-container">
+            <img
+              className="project-page-image"
+              alt=""
+              src={urlForImage(project.mainImage).url()}
+            />
             <img
               className="project-page-image"
               alt=""
@@ -93,7 +88,7 @@ export default function ProjectPage(props: ProjectPageProps) {
               src={urlForImage(project.image4).url()}
             />
           </div>
-        </>
+        </div>
       )}
     </>
   );
