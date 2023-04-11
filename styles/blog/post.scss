@@ -91,7 +91,7 @@ pre {
     display: flex;
     flex-direction: row;
     :first-child::after {
-      content: '/';
+      content: '|';
       margin: 0 0.5rem;
     }
     :nth-child(2)::after {
