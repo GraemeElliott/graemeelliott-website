@@ -13,9 +13,7 @@ export default function PortfolioPage({ projects }: Props) {
   return (
     <>
       <Head>
-        <title>
-          Portfolio | Graeme Elliott - Product Manager / QA Engineer
-        </title>
+        <title>Portfolio | Graeme Elliott - Product Owner</title>
       </Head>
       <div className="portfolio-page-container">
         <div className="portfolio-page-header">

@@ -64,16 +64,14 @@ export default function Homepage(props: IndexPageProps) {
   return (
     <>
       <Head>
-        <title>Graeme Elliott - Product Manager / QA Engineer</title>
+        <title>Graeme Elliott - Product Owner</title>
       </Head>
       <WebsiteMeta />
       <div className="homepage-container">
         <section className="homepage-hero">
           <div className="hero-details">
             <p className="hero-name">Graeme Elliott</p>
-            <p className="hero-title">
-              Product Manager / QA Engineer / Subject Matter Expert
-            </p>
+            <p className="hero-title">Product Owner / Subject Matter Expert</p>
             <div className="social-media-icons">
               <li>
                 <a

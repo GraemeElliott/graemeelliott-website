@@ -10,7 +10,7 @@ export default function ProjectPageHead({
   settings,
   project,
 }: PostPageHeadProps) {
-  const title = `${project.title} | Graeme Elliott - Product Manager / QA Engineer`;
+  const title = `${project.title} | Graeme Elliott - Product Owner`;
   return (
     <>
       <title>{title}</title>

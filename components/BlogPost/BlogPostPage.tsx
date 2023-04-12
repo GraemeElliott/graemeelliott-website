@@ -27,9 +27,7 @@ export default function PostPage(props: PostPageProps) {
   return (
     <>
       <Head>
-        <title>
-          {post.title} | Graeme Elliott - Product Manager / QA Engineer
-        </title>
+        <title>{post.title} | Graeme Elliott - Product Owner</title>
         <PostPageHead settings={settings} post={post} key={post.slug} />
       </Head>
       <div className="post-container">

@@ -65,7 +65,7 @@ export default function BlogPage(props: BlogPageProps) {
   return (
     <>
       <Head>
-        <title>Blog | Graeme Elliott - Product Manager / QA Engineer</title>
+        <title>Blog | Graeme Elliott - Product Owner</title>
       </Head>
       <div className="blog-header">
         <h1 className="blog-header-title">Blog</h1>
