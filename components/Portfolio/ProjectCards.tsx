@@ -10,12 +10,21 @@ type Props = {
 };
 
 export default function ProjectCards({ projects }: Props) {
+  const handleOnClick = (slug: string) => {
+    // Your logic for handling the click event, e.g., navigate to '/portfolio/${slug}'
+    window.location.href = `/portfolio/${slug}`;
+  };
+
   return (
-    <div className="project-cards-container">
-      {projects &&
-        projects.map((project) => (
-          <Link href={`/portfolio/${project.slug}`} key={project.slug}>
-            <div className="project-card" key={project.slug}>
+    <>
+      <div className="project-cards-container">
+        {projects &&
+          projects.map((project) => (
+            <div
+              className="project-card"
+              key={project.slug}
+              onClick={() => handleOnClick(project.slug)}
+            >
               <img
                 className="project-card-image"
                 alt=""
@@ -30,8 +39,8 @@ export default function ProjectCards({ projects }: Props) {
                 </div>
               </span>
             </div>
-          </Link>
-        ))}
-    </div>
+          ))}
+      </div>
+    </>
   );
 }

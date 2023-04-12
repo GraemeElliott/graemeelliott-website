@@ -10,10 +10,10 @@ export default function ProjectPageHead({
   settings,
   project,
 }: PostPageHeadProps) {
-  const title = settings.title;
+  const title = `${project.title} | Graeme Elliott - Product Manager / QA Engineer`;
   return (
     <>
-      <title>{project.title ? `${project.title} | ${title}` : title}</title>
+      <title>{title}</title>
       {project.mainImage?.asset?._ref && (
         <meta
           property="og:image"

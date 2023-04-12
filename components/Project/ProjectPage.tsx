@@ -27,16 +27,11 @@ export default function ProjectPage(props: ProjectPageProps) {
 
   return (
     <>
-      <Head>
-        <title>
-          {project.title} | Graeme Elliott - Product Manager / QA Engineer
-        </title>
-        <ProjectPageHead
-          settings={settings}
-          project={project}
-          key={project.slug}
-        />
-      </Head>
+      <ProjectPageHead
+        settings={settings}
+        project={project}
+        key={project.slug}
+      />
 
       {preview && !project ? (
         <ProjectTitle>Loading…</ProjectTitle>
