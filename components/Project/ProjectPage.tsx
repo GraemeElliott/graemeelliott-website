@@ -7,6 +7,8 @@ import Head from 'next/head';
 import { notFound } from 'next/navigation';
 import { urlForImage } from 'lib/sanity.image';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 export interface ProjectPageProps {
   preview?: boolean;
@@ -37,6 +39,11 @@ export default function ProjectPage(props: ProjectPageProps) {
         <ProjectTitle>Loading…</ProjectTitle>
       ) : (
         <div className="project-container">
+          <Link href={'/portfolio/'} className="back-button-project">
+            <FontAwesomeIcon icon={faArrowLeft} className="fa-lg" />
+            <span className="back-to-portfolio-text">BACK TO PORTFOLIO</span>
+          </Link>
+
           <ProjectDetailsHeader
             title={project.title}
             mainImage={project.mainImage}

@@ -5,6 +5,9 @@ import type { Post, Settings } from 'lib/sanity.queries';
 import Head from 'next/head';
 import { notFound } from 'next/navigation';
 import AuthorAvatar from './AuthorAvatar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 export interface PostPageProps {
   preview?: boolean;
@@ -31,6 +34,10 @@ export default function PostPage(props: PostPageProps) {
         <PostPageHead settings={settings} post={post} key={post.slug} />
       </Head>
       <div className="post-container">
+        <Link href={'/blog/'}>
+          <FontAwesomeIcon icon={faArrowLeft} className="fa-lg" />
+          <span className="back-to-blog">BACK TO BLOG</span>
+        </Link>
         <article>
           <PostHeader
             title={post.title}
