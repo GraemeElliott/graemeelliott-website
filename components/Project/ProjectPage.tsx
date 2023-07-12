@@ -2,6 +2,8 @@ import ProjectBody from './ProjectBody';
 import ProjectDetailsHeader from './ProjectDetailsHeader';
 import ProjectPageHead from './ProjectPageHead';
 import ProjectTitle from './ProjectTitle';
+import SpinnerComponent from 'components/Partials/Spinner';
+import { useState, useEffect } from 'react';
 import type { Project, Settings } from 'lib/sanity.queries';
 import Head from 'next/head';
 import { notFound } from 'next/navigation';
@@ -25,6 +27,16 @@ export default function ProjectPage(props: ProjectPageProps) {
 
   if (!slug && !preview) {
     notFound();
+  }
+
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
+
+  if (!isLoaded) {
+    return <SpinnerComponent />;
   }
 
   return (
