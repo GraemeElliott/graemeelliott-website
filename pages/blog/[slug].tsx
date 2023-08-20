@@ -81,7 +81,11 @@ export default function BlogByCategoryPage(props: PageProps) {
 
   if (!posts.length) {
     // added check for empty posts
-    return <div>Loading...</div>;
+    return (
+      <div className="no-posts-text">
+        <p>No published posts</p>
+      </div>
+    );
   }
 
   if (preview) {

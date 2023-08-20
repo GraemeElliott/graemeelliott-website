@@ -152,13 +152,4 @@
       }
     }
   }
-
-  @media (min-width: 2000px) {
-    .category-tags {
-      justify-content: center;
-      a:not(:last-child) {
-        margin-right: 7rem !important;
-      }
-    }
-  }
 }
