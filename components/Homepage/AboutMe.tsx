@@ -39,7 +39,7 @@ export default function AboutMe() {
           <p>
             In my spare time, I am a web development hobbyist, learning web
             development technologies such as JavaScript, React, Vue JS, Next JS
-            and Node Js through online resources and textbooks. This has enabled
+            and Node JS through online resources and textbooks. This has enabled
             me to gain an in-depth understanding of how websites are structured.
           </p>
           <p>

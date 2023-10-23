@@ -67,3 +67,9 @@
     grid-template-columns: repeat(auto-fill, 48%);
   }
 }
+
+@media (min-width: 1684px) {
+  .project-cards-container {
+    grid-template-columns: repeat(auto-fill, 32%);
+  }
+}
