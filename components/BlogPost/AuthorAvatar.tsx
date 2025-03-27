@@ -12,13 +12,6 @@ export default function AuthorAvatar(props: Author) {
     <>
       <hr className="solid"></hr>
       <div className="post-author-block-container">
-        <Image
-          src={urlForImage(image).url()}
-          className="post-author-block-img"
-          width={100}
-          height={110}
-          alt=""
-        />
         <div className="post-author-block-details">
           <div className="post-author-block-details-top">
             <p className="post-author-block-name">{name}</p>
