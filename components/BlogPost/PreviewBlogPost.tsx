@@ -11,7 +11,7 @@ export default function PreviewPostPage({
 } & PostPageProps) {
   const { post: postPreview }: { post: Post } = usePreview(token, postQuery, {
     slug: post.slug,
-  }) || { post: null, morePosts: [] };
+  }) || { post: null };
 
   return <PostPage preview post={postPreview} settings={settings} />;
 }

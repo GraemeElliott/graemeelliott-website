@@ -3,7 +3,7 @@ import { client } from 'lib/sanity.client';
 import { useRouter } from 'next/router';
 import { Post, Settings } from 'lib/sanity.queries';
 import { useState, useEffect, useMemo } from 'react';
-import { PreviewSuspense } from '@sanity/preview-kit';
+import { PreviewSuspense } from 'components/PreviewSuspense';
 import { lazy } from 'react';
 import BlogCards from 'components/Blog/BlogCards';
 import Pagination from 'components/Blog/Pagination/Pagination';

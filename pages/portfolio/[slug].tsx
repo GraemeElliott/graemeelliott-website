@@ -1,4 +1,4 @@
-import { PreviewSuspense } from '@sanity/preview-kit';
+import { PreviewSuspense } from 'components/PreviewSuspense';
 import ProjectPage from 'components/Project/ProjectPage';
 import { getAllProjectSlugs, getProject, getSettings } from 'lib/sanity.client';
 import { Project, Settings } from 'lib/sanity.queries';

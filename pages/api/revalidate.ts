@@ -21,16 +21,14 @@
  */
 
 import { apiVersion, dataset, projectId } from 'lib/sanity.api';
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { type SanityClient, createClient, groq } from 'next-sanity';
-import { type ParseBody, parseBody } from 'next-sanity/webhook';
+import { parseBody } from 'next-sanity/webhook';
+import { revalidatePath } from 'next/cache';
+import { type NextRequest } from 'next/server';
 
-export { config } from 'next-sanity/webhook';
+export const config = { runtime: 'edge' };
 
-export default async function revalidate(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function revalidate(req: NextRequest): Promise<Response> {
   try {
     const { body, isValidSignature } = await parseBody(
       req,
@@ -39,31 +37,31 @@ export default async function revalidate(
     if (isValidSignature === false) {
       const message = 'Invalid signature';
       console.log(message);
-      return res.status(401).send(message);
+      return new Response(message, { status: 401 });
     }
 
-    if (typeof body._id !== 'string' || !body._id) {
+    if (typeof body?._id !== 'string' || !body._id) {
       const invalidId = 'Invalid _id';
       console.error(invalidId, { body });
-      return res.status(400).send(invalidId);
+      return new Response(invalidId, { status: 400 });
     }
 
     const staleRoutes = await queryStaleRoutes(body as any);
-    await Promise.all(staleRoutes.map((route) => res.revalidate(route)));
+    staleRoutes.forEach((route) => revalidatePath(route));
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`;
     console.log(updatedRoutes);
-    return res.status(200).send(updatedRoutes);
-  } catch (err) {
+    return new Response(updatedRoutes, { status: 200 });
+  } catch (err: any) {
     console.error(err);
-    return res.status(500).send(err.message);
+    return new Response(err.message, { status: 500 });
   }
 }
 
 type StaleRoute = '/' | `/blog/post/${string}`;
 
 async function queryStaleRoutes(
-  body: Pick<ParseBody['body'], '_type' | '_id' | 'publishedAt' | 'slug'>
+  body: { _type: string; _id: string; publishedAt?: string; slug?: unknown }
 ): Promise<StaleRoute[]> {
   const client = createClient({
     projectId,
