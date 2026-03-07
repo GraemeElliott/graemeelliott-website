@@ -20,50 +20,85 @@
  * 14. Redeploy with `npx vercel --prod` to apply the new environment variable
  */
 
+import crypto from 'crypto';
 import { apiVersion, dataset, projectId } from 'lib/sanity.api';
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { type SanityClient, createClient, groq } from 'next-sanity';
-import { type ParseBody, parseBody } from 'next-sanity/webhook';
+import { revalidatePath } from 'next/cache';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-export { config } from 'next-sanity/webhook';
+export const config = { api: { bodyParser: false } };
 
-export default async function revalidate(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+function getRawBody(req: NextApiRequest): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let body = '';
+    req.on('data', (chunk) => { body += chunk.toString(); });
+    req.on('end', () => resolve(body));
+    req.on('error', reject);
+  });
+}
+
+function isValidSanitySignature(
+  rawBody: string,
+  signature: string | undefined,
+  secret: string
+): boolean {
+  if (!signature) return false;
+  const tPart = signature.split(',').find((p) => p.startsWith('t='));
+  const v1Part = signature.split(',').find((p) => p.startsWith('v1='));
+  if (!tPart || !v1Part) return false;
+  const timestamp = tPart.slice(2);
+  const v1 = v1Part.slice(3);
+  const expectedSig = crypto
+    .createHmac('sha256', secret)
+    .update(`${timestamp}.${rawBody}`, 'utf8')
+    .digest('hex');
   try {
-    const { body, isValidSignature } = await parseBody(
-      req,
-      process.env.SANITY_REVALIDATE_SECRET
-    );
-    if (isValidSignature === false) {
+    const v1Buf = Buffer.from(v1, 'hex');
+    const expectedBuf = Buffer.from(expectedSig, 'hex');
+    if (v1Buf.length !== expectedBuf.length) return false;
+    return crypto.timingSafeEqual(v1Buf, expectedBuf);
+  } catch {
+    return false;
+  }
+}
+
+export default async function revalidate(req: NextApiRequest, res: NextApiResponse): Promise<void> {
+  try {
+    const rawBody = await getRawBody(req);
+    const signature = req.headers['sanity-webhook-signature'] as string | undefined;
+    const secret = process.env.SANITY_REVALIDATE_SECRET || '';
+
+    if (!isValidSanitySignature(rawBody, signature, secret)) {
       const message = 'Invalid signature';
       console.log(message);
-      return res.status(401).send(message);
+      res.status(401).send(message);
+      return;
     }
 
-    if (typeof body._id !== 'string' || !body._id) {
+    const body = JSON.parse(rawBody) as { _type: string; _id: string; publishedAt?: string; slug?: unknown };
+    if (typeof body?._id !== 'string' || !body._id) {
       const invalidId = 'Invalid _id';
       console.error(invalidId, { body });
-      return res.status(400).send(invalidId);
+      res.status(400).send(invalidId);
+      return;
     }
 
-    const staleRoutes = await queryStaleRoutes(body as any);
-    await Promise.all(staleRoutes.map((route) => res.revalidate(route)));
+    const staleRoutes = await queryStaleRoutes(body);
+    staleRoutes.forEach((route) => revalidatePath(route));
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`;
     console.log(updatedRoutes);
-    return res.status(200).send(updatedRoutes);
-  } catch (err) {
+    res.status(200).send(updatedRoutes);
+  } catch (err: any) {
     console.error(err);
-    return res.status(500).send(err.message);
+    res.status(500).send(err.message);
   }
 }
 
 type StaleRoute = '/' | `/blog/post/${string}`;
 
 async function queryStaleRoutes(
-  body: Pick<ParseBody['body'], '_type' | '_id' | 'publishedAt' | 'slug'>
+  body: { _type: string; _id: string; publishedAt?: string; slug?: unknown }
 ): Promise<StaleRoute[]> {
   const client = createClient({
     projectId,
@@ -112,7 +147,7 @@ async function queryStaleAuthorRoutes(
   client: SanityClient,
   id: string
 ): Promise<StaleRoute[]> {
-  let slugs = await client.fetch(
+  await client.fetch(
     groq`*[_type == "author" && _id == $id] {
     "slug": *[_type == "post" && references(^._id)].slug.current
   }["slug"][]`,
@@ -131,5 +166,5 @@ async function queryStalePostRoutes(
     { id }
   );
 
-  return ['/', ...slugs.map((slug) => `/blog/post/${slug}`)];
+  return ['/', ...slugs.map((slug: string) => `/blog/post/${slug}`)];
 }

@@ -1,4 +1,4 @@
-@import './layout';
+@use './layout' as *;
 
 div[data-ui='NextStudioLayout'] {
   position: fixed;

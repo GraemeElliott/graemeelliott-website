@@ -1,4 +1,4 @@
-@import '../layout';
+@use '../layout' as *;
 
 .project-card-image {
   width: 100%;

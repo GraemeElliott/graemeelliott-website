@@ -1,4 +1,4 @@
-import { PreviewSuspense } from '@sanity/preview-kit';
+import { PreviewSuspense } from 'components/PreviewSuspense';
 import BlogPostPage from 'components/BlogPost/BlogPostPage';
 import { getAllPostsSlugs, getPost, getSettings } from 'lib/sanity.client';
 import { Post, Settings } from 'lib/sanity.queries';

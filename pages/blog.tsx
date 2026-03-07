@@ -3,7 +3,7 @@ import { client } from 'lib/sanity.client';
 import { useState, useEffect, useMemo } from 'react';
 import BlogPage from 'components/Blog/BlogPage';
 import Pagination from 'components/Blog/Pagination/Pagination';
-import { PreviewSuspense } from '@sanity/preview-kit';
+import { PreviewSuspense } from 'components/PreviewSuspense';
 import { getAllPosts, getSettings } from 'lib/sanity.client';
 import { Post, Settings } from 'lib/sanity.queries';
 import { GetServerSideProps } from 'next';

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { urlForImage } from '../lib/sanity.image';
-import Refractor from 'react-refractor';
+import { Refractor } from 'react-refractor';
 
 export const RichTextComponents = {
   types: {
