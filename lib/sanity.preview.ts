@@ -1,5 +1,5 @@
 import { dataset, projectId } from 'lib/sanity.api'
-import { definePreview } from 'next-sanity/preview'
+import { definePreview } from '@sanity/preview-kit'
 
 let alerted = false
 export const usePreview = definePreview({

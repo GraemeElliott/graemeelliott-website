@@ -1,7 +1,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { urlForImage } from '../lib/sanity.image';
-import Refractor from 'react-refractor';
+import { Refractor, registerLanguage } from 'react-refractor';
+import bash from 'refractor/bash';
+import css from 'refractor/css';
+import javascript from 'refractor/javascript';
+import json from 'refractor/json';
+import jsx from 'refractor/jsx';
+import python from 'refractor/python';
+import sql from 'refractor/sql';
+import tsx from 'refractor/tsx';
+import typescript from 'refractor/typescript';
+
+registerLanguage(bash);
+registerLanguage(css);
+registerLanguage(javascript);
+registerLanguage(json);
+registerLanguage(jsx);
+registerLanguage(python);
+registerLanguage(sql);
+registerLanguage(tsx);
+registerLanguage(typescript);
 
 export const RichTextComponents = {
   types: {

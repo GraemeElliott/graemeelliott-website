@@ -10,7 +10,7 @@ const RatioSkeleton = styled(Skeleton).attrs({
   radius: 3,
   shadow: 1,
   overflow: 'hidden',
-})`
+} as any)`
   aspect-ratio: ${width} / ${height};
   height: 100%;
   width: 100%;

@@ -21,26 +21,50 @@
  */
 
 import { apiVersion, dataset, projectId } from 'lib/sanity.api';
+import {
+  SIGNATURE_HEADER_NAME,
+  isValidSignature,
+} from '@sanity/webhook';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { type SanityClient, createClient, groq } from 'next-sanity';
-import { type ParseBody, parseBody } from 'next-sanity/webhook';
 
-export { config } from 'next-sanity/webhook';
+export const config = { api: { bodyParser: false } };
+
+type WebhookBody = {
+  _id: string;
+  _type: string;
+  publishedAt?: string;
+  slug?: { current?: string };
+};
+
+async function readRawBody(req: NextApiRequest): Promise<string> {
+  return new Promise((resolve, reject) => {
+    let data = '';
+    req.on('data', (chunk) => { data += chunk; });
+    req.on('end', () => resolve(data));
+    req.on('error', reject);
+  });
+}
 
 export default async function revalidate(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
-    const { body, isValidSignature } = await parseBody(
-      req,
-      process.env.SANITY_REVALIDATE_SECRET
-    );
-    if (isValidSignature === false) {
-      const message = 'Invalid signature';
-      console.log(message);
-      return res.status(401).send(message);
+    const rawBody = await readRawBody(req);
+    const signature = req.headers[SIGNATURE_HEADER_NAME] as string;
+    const secret = process.env.SANITY_REVALIDATE_SECRET;
+
+    if (secret) {
+      const valid = await isValidSignature(rawBody, signature, secret);
+      if (!valid) {
+        const message = 'Invalid signature';
+        console.log(message);
+        return res.status(401).send(message);
+      }
     }
+
+    const body: WebhookBody = JSON.parse(rawBody);
 
     if (typeof body._id !== 'string' || !body._id) {
       const invalidId = 'Invalid _id';
@@ -48,7 +72,7 @@ export default async function revalidate(
       return res.status(400).send(invalidId);
     }
 
-    const staleRoutes = await queryStaleRoutes(body as any);
+    const staleRoutes = await queryStaleRoutes(body);
     await Promise.all(staleRoutes.map((route) => res.revalidate(route)));
 
     const updatedRoutes = `Updated routes: ${staleRoutes.join(', ')}`;
@@ -63,7 +87,7 @@ export default async function revalidate(
 type StaleRoute = '/' | `/blog/post/${string}`;
 
 async function queryStaleRoutes(
-  body: Pick<ParseBody['body'], '_type' | '_id' | 'publishedAt' | 'slug'>
+  body: WebhookBody
 ): Promise<StaleRoute[]> {
   const client = createClient({
     projectId,
