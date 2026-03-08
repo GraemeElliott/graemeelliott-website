@@ -92,7 +92,7 @@ array::unique(*[_type == "post"][].categories[]->slug.current)
 
 export const postBySlugQuery = groq`
 *[_type == "post" && slug.current == $slug][0] {
-  ${postFields}
+  ${postFieldsWithBody}
 }
 `;
 
