@@ -86,6 +86,10 @@ export const projectSlugsQuery = groq`
 *[_type == "project" && defined(slug.current)][].slug.current
 `;
 
+export const categorySlugsQuery = groq`
+array::unique(*[_type == "post"][].categories[]->slug.current)
+`;
+
 export const postBySlugQuery = groq`
 *[_type == "post" && slug.current == $slug][0] {
   ${postFields}

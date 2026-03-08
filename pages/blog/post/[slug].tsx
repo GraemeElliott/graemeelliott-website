@@ -1,73 +1,27 @@
-import { PreviewSuspense } from '@sanity/preview-kit';
+import useSWR from 'swr';
 import BlogPostPage from 'components/BlogPost/BlogPostPage';
-import { getAllPostsSlugs, getPost, getSettings } from 'lib/sanity.client';
-import { Post, Settings } from 'lib/sanity.queries';
-import { GetServerSideProps } from 'next';
-import { lazy } from 'react';
+import { client, getAllPostSlugs } from 'lib/sanity.client';
+import { postBySlugQuery, type Post } from 'lib/sanity.queries';
 
-const PreviewBlogPost = lazy(
-  () => import('components/BlogPost/PreviewBlogPost')
-);
-
-interface PageProps {
-  post: Post;
-  settings?: Settings;
-  preview: boolean;
-  token: string | null;
-}
-
-interface Query {
-  [key: string]: string;
-}
-
-interface PreviewData {
-  token?: string;
-}
-
-export default function BlogSlugRoute(props: PageProps) {
-  const { settings, post, preview, token } = props;
-
-  if (preview) {
-    return (
-      <PreviewSuspense
-        fallback={
-          <BlogPostPage loading preview post={post} settings={settings} />
-        }
-      >
-        <PreviewBlogPost token={token} post={post} settings={settings} />
-      </PreviewSuspense>
-    );
-  }
-
-  return <BlogPostPage post={post} settings={settings} />;
-}
-
-export const getServerSideProps: GetServerSideProps<
-  PageProps,
-  Query,
-  PreviewData
-> = async (ctx) => {
-  const { preview = false, previewData = {}, params = {} } = ctx;
-
-  const token = previewData.token;
-
-  const [settings, { post }] = await Promise.all([
-    getSettings(),
-    getPost(params.slug, token),
-  ]);
-
-  if (!post) {
-    return {
-      notFound: true,
-    };
-  }
-
+export async function getStaticPaths() {
+  const slugs = await getAllPostSlugs();
   return {
-    props: {
-      post,
-      settings,
-      preview,
-      token: previewData.token ?? null,
-    },
+    paths: slugs.map((slug) => ({ params: { slug } })),
+    fallback: false,
   };
-};
+}
+
+export async function getStaticProps({ params }: { params: { slug: string } }) {
+  return { props: { slug: params.slug } };
+}
+
+export default function BlogPostRoute({ slug }: { slug: string }) {
+  const { data: post } = useSWR(
+    slug ? [postBySlugQuery, slug] : null,
+    ([query, s]) => client.fetch<Post>(query, { slug: s })
+  );
+
+  if (!post) return <div>Loading...</div>;
+
+  return <BlogPostPage post={post} settings={undefined} />;
+}

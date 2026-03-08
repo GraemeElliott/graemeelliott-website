@@ -1,131 +1,30 @@
-import { groq } from 'next-sanity';
-import { client } from 'lib/sanity.client';
-import { useState, useEffect, useMemo } from 'react';
+import useSWR from 'swr';
+import { useState, useMemo } from 'react';
 import BlogPage from 'components/Blog/BlogPage';
 import Pagination from 'components/Blog/Pagination/Pagination';
-import { PreviewSuspense } from '@sanity/preview-kit';
-import { getAllPosts, getSettings } from 'lib/sanity.client';
-import { Post, Settings } from 'lib/sanity.queries';
-import { GetServerSideProps } from 'next';
-import { lazy } from 'react';
+import { client } from 'lib/sanity.client';
+import { indexQuery, type Post } from 'lib/sanity.queries';
 
-export const revalidate = 30; //revalidate this page every 30 seconds
+const PAGE_SIZE = 9;
 
-const PreviewBlogPage = lazy(
-  () => import('../components/Blog/PreviewBlogPage')
-);
-
-interface PageProps {
-  posts: Post[];
-  settings: Settings;
-  preview: boolean;
-  token: string | null;
-}
-
-interface Query {
-  [key: string]: string;
-}
-
-interface PreviewData {
-  token?: string;
-}
-
-const query = groq`*[_type == "post"] | order(publishedAt desc) {
-    _id,
-    title,
-    titleColour,
-    slug,
-    postCardType,
-    author->,
-    publishedAt,
-    description,
-    mainImage{
-        asset -> {
-            _id,
-            url
-        }
-    },
-    categories[]->,
-    "category": categories[]->title,
-  }`;
-
-export const getServerSideProps: GetServerSideProps<
-  PageProps,
-  Query,
-  PreviewData
-> = async (ctx) => {
-  const { preview = false, previewData = {}, params = {} } = ctx;
-
-  const [settings, posts = []] = await Promise.all([
-    getSettings(),
-    getAllPosts(),
-  ]);
-
-  return {
-    props: {
-      posts,
-      settings,
-      preview,
-      token: previewData.token ?? null,
-    },
-  };
-};
-
-export default function Blog(props: PageProps) {
-  const { posts, settings, preview, token } = props;
+export default function Blog() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [allPosts, setPosts] = useState([]);
-  let PageSize = 9;
-
-  useEffect(() => {
-    async function fetchData() {
-      const data = await client.fetch(query);
-      setPosts(data);
-    }
-    fetchData();
-  }, []);
-
-  if (!posts) {
-    return <div>Loading...</div>;
-  }
+  const { data: posts = [], isLoading } = useSWR(indexQuery, (q) => client.fetch<Post[]>(q));
 
   const currentPosts = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return posts.slice(firstPageIndex, lastPageIndex);
+    const firstPageIndex = (currentPage - 1) * PAGE_SIZE;
+    return posts.slice(firstPageIndex, firstPageIndex + PAGE_SIZE);
   }, [currentPage, posts]);
-
-  if (!posts.length) {
-    // added check for empty posts
-    return <div>Loading...</div>;
-  }
-
-  if (preview) {
-    return (
-      <PreviewSuspense
-        fallback={
-          <BlogPage preview posts={posts} settings={settings} token={''} />
-        }
-      >
-        <PreviewBlogPage token={token} />
-      </PreviewSuspense>
-    );
-  }
 
   return (
     <div className="blog-page-container">
-      <BlogPage
-        posts={currentPosts}
-        settings={undefined}
-        preview={false}
-        token={''}
-      />
+      <BlogPage loading={isLoading} posts={currentPosts} settings={undefined} preview={false} token={''} />
       <div className="pagination-container">
         <Pagination
           className="pagination-bar"
           currentPage={currentPage}
           totalCount={posts.length}
-          pageSize={PageSize}
+          pageSize={PAGE_SIZE}
           onPageChange={(page) => setCurrentPage(page)}
         />
       </div>

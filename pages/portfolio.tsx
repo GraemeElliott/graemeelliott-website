@@ -1,76 +1,10 @@
+import useSWR from 'swr';
 import PortfolioPage from 'components/Portfolio/PortfolioPage';
-import { PreviewSuspense } from '@sanity/preview-kit';
-import { getAllProjects, getSettings } from 'lib/sanity.client';
-import { Project, Settings } from 'lib/sanity.queries';
-import { GetServerSideProps } from 'next';
-import { lazy } from 'react';
+import { client } from 'lib/sanity.client';
+import { indexProjectQuery, type Project } from 'lib/sanity.queries';
 
-export const revalidate = 30; //revalidate this page every 30 seconds
+export default function Portfolio() {
+  const { data: projects = [], isLoading } = useSWR(indexProjectQuery, (q) => client.fetch<Project[]>(q));
 
-const PreviewPortfolioPage = lazy(
-  () => import('../components/Portfolio/PreviewPortfolioPage')
-);
-
-interface PageProps {
-  projects: Project[];
-  settings: Settings;
-  preview: boolean;
-  token: string | null;
-}
-
-interface Query {
-  [key: string]: string;
-}
-
-interface PreviewData {
-  token?: string;
-}
-
-export const getServerSideProps: GetServerSideProps<
-  PageProps,
-  Query,
-  PreviewData
-> = async (ctx) => {
-  const { preview = false, previewData = {}, params = {} } = ctx;
-
-  const [settings, projects = []] = await Promise.all([
-    getSettings(),
-    getAllProjects(),
-  ]);
-
-  return {
-    props: {
-      projects,
-      settings,
-      preview,
-      token: previewData.token ?? null,
-    },
-  };
-};
-
-export default function Portfolio(props: PageProps) {
-  const { projects, settings, preview, token } = props;
-
-  if (!projects) {
-    return <div>Loading...</div>;
-  }
-
-  if (preview) {
-    return (
-      <PreviewSuspense
-        fallback={
-          <PortfolioPage
-            loading
-            preview
-            projects={projects}
-            settings={settings}
-          />
-        }
-      >
-        <PreviewPortfolioPage token={token} />
-      </PreviewSuspense>
-    );
-  }
-
-  return <PortfolioPage projects={projects} settings={undefined} />;
+  return <PortfolioPage loading={isLoading} projects={projects} settings={undefined} />;
 }
